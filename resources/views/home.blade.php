@@ -40,7 +40,7 @@ padding-bottom: 0;
     <div class="row">
     	<div class="col-md-9">
    
-        <div id="myCarousel" class="carousel slide rcorners2" data-ride="carousel">
+        <div id="myCarousel" class="col-md-12 carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -50,11 +50,11 @@ padding-bottom: 0;
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      {!! Html::image('product/sunday-outfit.jpg','First Picture', array('class'=>'rcorners2','style'=>'width:100%; height:500px;','alt'=>'0')) !!}
+      {!! Html::image('product/sunday-outfit.jpg','First Picture', array('class'=>'rcorners2 ','style'=>'width:100%; height:500px;','alt'=>'0')) !!}
     </div>
 
     <div class="item">
-      {!! Html::image('assets/gallery/lemari-pakaian-jati-minimalis.jpg','Second Picture', array('style'=>'width:100%; height:500px;','alt'=>'1')) !!}
+      {!! Html::image('assets/gallery/lemari-pakaian-jati-minimalis.jpg','Second Picture', array('class'=>'rcorners2 ','style'=>'width:100%; height:500px;','alt'=>'1')) !!}
     </div>
 </div>
 
@@ -65,7 +65,7 @@ padding-bottom: 0;
     <div class="col-lg-3">
         <div class="panel panel-warning">
             
-                <div class="panel-body" style="min-height:445px;">
+                <div class="panel-body" style="min-height:330px;">
                 <h4>Deskripsi:</h4><br>
 
                 <h5>Nama Set :<span style="color:orange;">Sunday Outfit</span></h5><br>
@@ -77,13 +77,19 @@ padding-bottom: 0;
                     <li class='li'>Black Jeans</li>
                   </ul>
                 </h5><br>
-                <h4>Harga : <span style="color:red;"><strike>Rp.360.000,00-</strike></span></h4>
-                <center><h2><span style="color:green;">Rp.300.000,00-</span></h2></center>
+                
                 </div>
-                      <button type="button" class="btn btn-danger pull-right" style="margin:10px"> Buy Now </button>
-                      <button type="button" class="btn btn-primary pull-right" style="margin:10px"> Share </button>
+                
+                <center>
+                  Harga : 
+                <h4><span style="color:red;"><strike>Rp.360.000,00-</strike></span></h4>
+                <h2><span style="color:green;">Rp.300.000,00-</span></h2></center>
+                <div style='border-top:1px #c0c0c0; text-align:center'>     <button type="button" class="btn btn-primary"   style="margin:10px"> Share </button>
+                      
+                      <button type="button" class="btn btn-danger " style="margin:10px"> Buy Now </button>
                       <div class="clearfix">
-                        
+                      
+                <div>        
                       </div>
             </div>
         </div>
