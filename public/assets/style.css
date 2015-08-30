@@ -1,0 +1,29 @@
+ .rcorners2 {
+    border-radius: 10px;
+    width: 845px;
+    height: 505px;
+  }
+
+  .shadow-arch-edges {
+    position: relative;
+    box-shadow: 0 12px 10px -12px hsla(0, 0%, 0%, 1);
+  }
+
+  .shadow-arch-edges:before, .shadow-arch-edges:after {
+    position: absolute;
+    content: "";
+    width: 15%;
+    bottom: 10px;
+    box-shadow: 0 0 12px 10px hsla(0, 0%, 0%, .5);
+    z-index: -10;
+  }
+
+  .shadow-arch-edges:before {
+    left: 24px;
+    transform: skewY(-12.5deg);
+  }
+
+  .shadow-arch-edges:after{
+    right: 24px;
+    transform: skewY(12.5deg);
+  }

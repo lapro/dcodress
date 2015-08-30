@@ -4,40 +4,9 @@
 	<title></title>
 
 	{!!Html::style('assets/bootstrap/css/bootstrap.css')!!}
-	{!!Html::style('assets/jquery/jquery-2.1.4.min.js')!!}
-
-  <style type="text/css">
-    .rcorners2 {
-    border-radius: 10px;
-    width: 845px;
-    height: 505px;
-  }
-
-  .shadow-arch-edges {
-    position: relative;
-    box-shadow: 0 12px 10px -12px hsla(0, 0%, 0%, 1);
-  }
-
-  .shadow-arch-edges:before, .shadow-arch-edges:after {
-    position: absolute;
-    content: "";
-    width: 15%;
-    bottom: 10px;
-    box-shadow: 0 0 12px 10px hsla(0, 0%, 0%, .5);
-    z-index: -10;
-  }
-
-  .shadow-arch-edges:before {
-    left: 24px;
-    transform: skewY(-12.5deg);
-  }
-
-  .shadow-arch-edges:after{
-    right: 24px;
-    transform: skewY(12.5deg);
-  }
-
-  </style>
+	{!!Html::script('assets/jquery/jquery-2.1.4.min.js')!!}
+  {!!Html::style('assets/style.css')!!}
+  
 </head>
 <body>
 <br>
@@ -65,22 +34,21 @@
   <ol class="carousel-indicators">
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
     <li data-target="#myCarousel" data-slide-to="1"></li>
-    <li data-target="#myCarousel" data-slide-to="2"></li>
-    <li data-target="#myCarousel" data-slide-to="3"></li>
   </ol>
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      {!! Html::image('assets/gallery/gallery-1.jpg','First Picture', array('class'=>'rcorners2','style'=>'width:100%; height:500px;')) !!}
+      {!! Html::image('assets/gallery/gallery-1.jpg','First Picture', array('class'=>'rcorners2','style'=>'width:100%; height:500px;','alt'=>'0')) !!}
     </div>
 
     <div class="item">
-      {!! Html::image('assets/gallery/lemari-pakaian-jati-minimalis.jpg','First Picture', array('style'=>'width:100%; height:500px;')) !!}
+      {!! Html::image('assets/gallery/lemari-pakaian-jati-minimalis.jpg','Second Picture', array('style'=>'width:100%; height:500px;','alt'=>'1')) !!}
     </div>
 </div>
 
       </div>
+
     </div>
 
     <div class="col-lg-3">
@@ -96,5 +64,6 @@
             </div>
         </div>
 
+{!!Html::script('assets/bootstrap/js/bootstrap.min.js')!!}
 </body>
 </html>
