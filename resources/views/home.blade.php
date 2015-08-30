@@ -11,7 +11,7 @@
 <body>
 <br>
 	<div class="container">
-  <nav class="navbar navbar-inverse shadow-arch-edges" style="background-color:pink; border:none">
+  <nav class="navbar navbar-inverse shadow-arch-edges" style="background-color:oldlace; border:none">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
@@ -19,7 +19,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" style="color:black;" href="#">DCODRESS</a>
         </div>     
     </nav>
 
@@ -52,15 +52,16 @@
     </div>
 
     <div class="col-lg-3">
-        <div class="panel panel-warning" style="min-height:500px;">
-            <div class="panel-heading">Panel heading without title</div>
-                <div class="panel-body" style="min-height:400px;">
+        <div class="panel panel-warning">
+            
+                <div class="panel-body" style="min-height:445px;">
                   Deskripsi:
                 </div>
-                <div class="clearfix"></div>
                       <button type="button" class="btn btn-danger pull-right" style="margin:10px"> Buy Now </button>
                       <button type="button" class="btn btn-primary pull-right" style="margin:10px"> Share </button>
-                <div class="clearfix"></div>
+                      <div class="clearfix">
+                        
+                      </div>
             </div>
         </div>
 
