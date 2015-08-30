@@ -55,7 +55,19 @@
         <div class="panel panel-warning">
             
                 <div class="panel-body" style="min-height:445px;">
-                  Deskripsi:
+                <h4>Deskripsi:</h4><br>
+
+                <h5>Nama Set :<span style="color:orange;">Sunday Outfit</span></h5><br>
+                <h5>Kelengkapan :</h5>
+                <h5 style="color:firebrick;">
+                  <ul>
+                    <li class='li'>White Cardigan (Shord Sleeve)</li>
+                    <li class='li'>Purple Tanktop</li>
+                    <li class='li'>Black Jeans</li>
+                  </ul>
+                </h5><br>
+                <h4>Harga : <span style="color:red;"><strike>Rp.360.000,00-</strike></span></h4>
+                <center><h2><span style="color:green;">Rp.300.000,00-</span></h2></center>
                 </div>
                       <button type="button" class="btn btn-danger pull-right" style="margin:10px"> Buy Now </button>
                       <button type="button" class="btn btn-primary pull-right" style="margin:10px"> Share </button>

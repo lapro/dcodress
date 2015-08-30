@@ -28,6 +28,6 @@
     transform: skewY(12.5deg);
   }
 
-  .shadow{
-    box-shadow: 10px 10px 5px pink;
+  .li{
+    margin-bottom: 5px;
   }
