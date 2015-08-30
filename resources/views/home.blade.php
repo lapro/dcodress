@@ -7,6 +7,17 @@
 	{!!Html::script('assets/jquery/jquery-2.1.4.min.js')!!}
   {!!Html::style('assets/style.css')!!}
   
+  <style type="text/css">
+
+.navbar .brand {
+max-height: 40px;
+overflow: visible;
+padding-top: 0;
+padding-bottom: 0;
+}
+.navbar a.navbar-brand {padding: 9px 15px 8px; }
+  </style>
+
 </head>
 <body>
 <br>
@@ -19,7 +30,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" style="color:black;" href="#">DCODRESS</a>
+          <a class="navbar-brand" style="color:black;" href="#"><img src="{{asset('img/logo.png')}}"></a>
         </div>     
     </nav>
 
@@ -39,7 +50,7 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      {!! Html::image('assets/gallery/gallery-1.jpg','First Picture', array('class'=>'rcorners2','style'=>'width:100%; height:500px;','alt'=>'0')) !!}
+      {!! Html::image('product/sunday-outfit.jpg','First Picture', array('class'=>'rcorners2','style'=>'width:100%; height:500px;','alt'=>'0')) !!}
     </div>
 
     <div class="item">
