@@ -56,7 +56,7 @@ padding-bottom: 0;
     </div>
 
     <div class="item">
-      {!! Html::image('assets/gallery/lemari-pakaian-jati-minimalis.jpg','Second Picture', array('class'=>'rcorners2 ','style'=>'width:100%; height:500px;','alt'=>'1')) !!}
+      {!! Html::image('product/sunday-outfit1.jpg','Second Picture', array('class'=>'rcorners2 ','style'=>'width:100%; height:500px;','alt'=>'1')) !!}
     </div>
 </div>
 
