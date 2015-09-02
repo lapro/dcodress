@@ -6,23 +6,25 @@
 	{!!Html::style('assets/bootstrap/css/bootstrap.css')!!}
 	{!!Html::script('assets/jquery/jquery-2.1.4.min.js')!!}
   {!!Html::style('assets/style.css')!!}
+
   
   <style type="text/css">
 
 .navbar .brand {
-max-height: 40px;
+/*max-height: 40px;*/
 overflow: visible;
 padding-top: 0;
 padding-bottom: 0;
 }
 .navbar a.navbar-brand {padding: 9px 15px 8px; }
+
   </style>
 
 </head>
 <body>
 <br>
 	<div class="container">
-  <nav class="navbar navbar-inverse shadow-arch-edges" style="background-color:oldlace; border:none">
+  <nav class="navbar navbar-inverse shadow-arch-edges" style="height:60px;background-color:oldlace; border:none">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
