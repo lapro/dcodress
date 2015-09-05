@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('home');
 });
+
+Route::group(['prefix'=>"adm"], function(){
+
+	Route::get("/", function(){
+		return "adm";
+	});
+});
+	
