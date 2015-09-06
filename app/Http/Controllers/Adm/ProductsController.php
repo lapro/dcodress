@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Model\Product\Products;
+use yajra\Datatables\Datatables;
+
 class ProductsController extends Controller
 {
     /**
@@ -27,8 +30,8 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
-        return view('adm/product/create');
+        $do='create';
+        return view('adm/product/create')->with('do',$do);
     }
 
     /**
@@ -39,7 +42,8 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Products::create($request->all());
+        return redirect('adm/products');
     }
 
     /**
@@ -50,7 +54,8 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        //
+        $products=Products::findOrFail($id);
+        return view('adm/product/show')->with('products',$products);
     }
 
     /**
@@ -61,7 +66,10 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $do='edit';
+        $products=Products::findOrFail($id);
+        $status=$products->status;
+        return view('adm/product/edit')->with('products',$products)->with('do',$do);
     }
 
     /**
@@ -73,7 +81,8 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Products::findOrFail($id)->update($request->all());
+        return redirect('adm/products');
     }
 
     /**
@@ -84,6 +93,11 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Products::findOrFail($id)->delete();
+        return redirect()->route('adm/products');
+    }
+
+    public function datatables(){
+       return Datatables::of(Products::select('*'))->make(true);
     }
 }

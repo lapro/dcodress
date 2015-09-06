@@ -1,14 +1,15 @@
 @extends('adm/template')
 
 @section('content')
+<h1>Add New Product</h1>
+<hr/>
 
-<div class="box box-success">
-                <div class="box-header">
-                  <i class="fa fa-comments-o"></i>
-                  <h3 class="box-title">Create Product</h3>
-                </div>
-     <div class="box-body " id="">
-     	as
-     </div>
-    </div>
+	{!! Form::open(['method'=>'POST','url'=>'adm/products']) !!}
+
+		@include('adm/product/form',['submitButtonText'=>'Add Item'])
+	
+	{!! Form::close() !!}
+
+	@include('errors.list')
+
 @stop

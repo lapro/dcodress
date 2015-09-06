@@ -19,6 +19,9 @@ Route::group(['prefix'=>"adm", "namespace"=>'Adm'], function(){
 
 	Route::get("/", 'HomeController@index');
 
+	Route::get(
+	'products/datatables',
+	['uses'=>'ProductsController@datatables']);
 	Route::resource('products',"ProductsController");
 });
 	
