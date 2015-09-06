@@ -15,10 +15,10 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::group(['prefix'=>"adm", "namespace"=>'adm'], function(){
+Route::group(['prefix'=>"adm", "namespace"=>'Adm'], function(){
 
-	Route::get("/", 'Home@index');
+	Route::get("/", 'HomeController@index');
 
-	Route::resource('products',"Adm/ProductsController");
+	Route::resource('products',"ProductsController");
 });
 	

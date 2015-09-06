@@ -17,6 +17,7 @@ class ProductsController extends Controller
     public function index()
     {
         //
+        return view('adm/product/index');
     }
 
     /**
@@ -27,6 +28,7 @@ class ProductsController extends Controller
     public function create()
     {
         //
+        return view('adm/product/create');
     }
 
     /**
