@@ -104,7 +104,9 @@ background-color: transparent;
     </div>
 
     <div class="item">
+
       {!! Html::image('assets/gallery/lemari-pakaian-jati-minimalis.jpg','Second Picture', array('class'=>'rcorners2 ','style'=>'width:100%; height:450px;','alt'=>'1')) !!}
+
     </div>
 </div>
 
