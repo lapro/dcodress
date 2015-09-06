@@ -7,41 +7,6 @@
 	{!!Html::script('assets/jquery/jquery-2.1.4.min.js')!!}
   {!!Html::style('assets/style.css')!!}
 
-  
-  <style type="text/css">
-body{
-  font-size: 10pt;
-}
-.navbar .brand {
-/*max-height: 40px;*/
-overflow: visible;
-padding-top: 0;
-padding-bottom: 0;
-}
-.navbar a.navbar-brand {padding: 5px 15px 8px; }
-
-.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
-color: red;
-background-color: transparent;
-border-bottom: 5px solid red;
-}
-.navbar-inverse .navbar-nav > li > a {
-color: black;
-}
-
-.nav > li > a:hover, .nav > li > a:focus {
-color: red;
-background-color: transparent;
-border-bottom: 1px solid red;
-}
-
-
-.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
-color: red;
-background-color: transparent;
-}
-  </style>
-
 </head>
 <body>
 
@@ -186,5 +151,6 @@ Copyright - 2015 dcodress.com
 </script>
 
 {!!Html::script('assets/bootstrap/js/bootstrap.min.js')!!}
+@yield('footer')
 </body>
 </html>

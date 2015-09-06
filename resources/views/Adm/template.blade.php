@@ -26,6 +26,7 @@
 
 
   {!!Html::script('assets/jquery/jquery-2.1.4.min.js')!!}
+  {!!Html::style("assets/datatables/jquery.dataTables.css")!!}
   </head>
   <body class="skin-blue sidebar-mini">
     <div class="wrapper">
@@ -174,6 +175,7 @@
     <!-- AdminLTE App -->
     <script src="{!! asset('') !!}/assets/template/js/app.min.js" type="text/javascript"></script>    
     
-   
+   {!!Html::script("assets/datatables/jquery.dataTables.js")!!}
+   @yield('footer')
   </body>
 </html>
