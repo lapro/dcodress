@@ -6,13 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'AddProductTypeForeignKey' => $baseDir . '/database/migrations/2015_09_06_030345_add_product_type_foreign_key.php',
-    'CreateItemImageTable' => $baseDir . '/database/migrations/2015_09_06_031100_create_item_image_table.php',
-    'CreateItemTypeTable' => $baseDir . '/database/migrations/2015_09_06_030622_create_product_type_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
-    'CreateProductItemTable' => $baseDir . '/database/migrations/2015_09_06_031345_create_product_item_table.php',
-    'CreateProductTable' => $baseDir . '/database/migrations/2015_09_06_014204_create_product_table.php',
-    'CreateProductTypeTable' => $baseDir . '/database/migrations/2015_09_06_024019_create_product_type_table.php',
+    'CreateProductImagesTable' => $baseDir . '/database/migrations/2015_09_06_061810_create_product_images_table.php',
+    'CreateProductsTable' => $baseDir . '/database/migrations/2015_09_06_061736_create_products_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
