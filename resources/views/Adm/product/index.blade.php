@@ -7,6 +7,11 @@
         <thead>
         <tr>
           <th>Id</th>
+          <th>Set Name</th>
+          <th>Description</th>
+          <th>Original Price</th>
+          <th>Price</th>
+          <th>Status</th>
         </tr>
         </thead>
         <tbody>
@@ -23,14 +28,18 @@
 
     $(document).ready(function(){
 
-    $(function() {
-      $('#datatables').DataTable({
+        $(function() {
+            $('#datatables').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: '{!! url("adm/products/datatables") !!}',
                 columns: [
-                    { data: 'id', name: 'Id' },
-                   
+                    { data: 'id', name: 'id' },
+                    { data: 'name', name: 'name' },
+                    { data: 'description', name: 'description' },
+                    { data: 'original_price', name: 'original_price' },
+                    { data: 'price', name: 'price' },
+                    { data: 'status', name: 'status' }
                 ]
             });
         });
