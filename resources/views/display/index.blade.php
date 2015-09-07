@@ -29,10 +29,10 @@
     </div>
 
     <div class="col-lg-3">
-        <div class="panel panel-warning" style='border-color:black'>
+        <div class="panel panel-warning" style=''>
             
                 <div class="panel-body" style="min-height:275px;">
-               Nama Set  :<br><br><center><span class='label label-danger label-large' style=" font-size:12pt">{{ $product->name }}</span></center><br>
+               <br><center><span class='label label-primary shadow' style=" font-size:12pt;">- {{ $product->name }} -</span></center><br>
                
                 <h5 style="">
                   {!! $product->description !!}
@@ -43,15 +43,15 @@
                 
                 <center>
                   <br>
-              <h4><span style="color:red;"><strike>Rp.360.000,00-</strike></span></h4>
-                <h2><span style="color:green;">Rp.300.000,00-</span></h2></center>
+              <h4><span style="color:black;"><strike>Rp.{{ $product->original_price }}</strike></span></h4>
+                <h2><span style="color:red;">Rp.300.000,00-</span></h2></center>
 
                 </div>
 
-                <div style='border-top:1px #c0c0c0; text-align:center'>     <button type="button" class="btn btn-primary"   style="margin:10px"> Get <br>Better Price ! </button>
+                <div style='border-top:1px #c0c0c0; text-align:center'>     <button type="button" class="btn btn-primary shadow"   style="margin:10px;"> Get <br>Better Price ! </button>
 
                       
-                      <button type="button" class="btn btn-danger " style="margin:10px"> Buy Now !</button>
+                      <button type="button" class="btn btn-danger shadow" style="margin:10px"> Buy Now !</button>
                       <div class="clearfix">
                       
                 <div>        
