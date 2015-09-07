@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+
 
 Route::group(['prefix'=>"adm", "namespace"=>'Adm'], function(){
 
@@ -25,3 +23,4 @@ Route::group(['prefix'=>"adm", "namespace"=>'Adm'], function(){
 	Route::resource('products',"ProductsController");
 });
 	
+Route::get('/{slug}', ["uses"=>"DisplayController@index"]);
