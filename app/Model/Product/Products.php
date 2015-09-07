@@ -3,6 +3,7 @@
 namespace App\Model\Product;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\support\Str;
 
 class Products extends Model
 {
@@ -13,7 +14,15 @@ class Products extends Model
 		'original_price',
 		'price',
 		'description',
-		'status'
+		'status',
+		'slug'
 	];
 
+	public function getSlug($title)
+	{
+    	$slug = Str::slug($title);
+    	$slugCount = count( $this->whereRaw("slug REGEXP '^{$slug}(-[0-9]*)?$'")->get() );
+ 
+	    return ($slugCount > 0) ? "{$slug}-{$slugCount}" : $slug;
+	}
 }

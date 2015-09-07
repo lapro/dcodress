@@ -29,19 +29,13 @@
     </div>
 
     <div class="col-lg-3">
-        <div class="panel panel-warning">
+        <div class="panel panel-warning" style='border-color:black'>
             
                 <div class="panel-body" style="min-height:275px;">
-                <h4>Deskripsi:</h4><br>
-
-                Nama Set :<span style="color:orange;">Sunday Outfit</span><br>
-               Kelengkapan :
-                <h5 style="color:firebrick;">
-                  <ul>
-                    <li class='li'>White Cardigan (Shord Sleeve)</li>
-                    <li class='li'>Purple Tanktop</li>
-                    <li class='li'>Black Jeans</li>
-                  </ul>
+               Nama Set  :<br><br><center><span class='label label-danger label-large' style=" font-size:12pt">{{ $product->name }}</span></center><br>
+               
+                <h5 style="">
+                  {!! $product->description !!}
                 </h5>
                 
                 </div>
@@ -49,8 +43,8 @@
                 
                 <center>
                   <br>
-              <h5><span style="color:red;"><strike>Rp.360.000,00-</strike></span></h5>
-                <h3><span style="color:green;">Rp.300.000,00-</span></h3></center>
+              <h4><span style="color:red;"><strike>Rp.360.000,00-</strike></span></h4>
+                <h2><span style="color:green;">Rp.300.000,00-</span></h2></center>
 
                 </div>
 

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Model\Product\Products;
+use App;
 
 class DisplayController extends Controller
 {
@@ -14,12 +16,18 @@ class DisplayController extends Controller
      *
      * @return Response
      */
-    public function index($slug)
+    public function index($slug, Products $products)
     {
         //
+        $p = $products->where('slug','=',$slug)->first();
+        if(count($p) > 0) {
 
-        return view('display.index');
-    }
+            return view('display.index')->with('product',$p);
+        }else{
+            // jika data tidak ada makan redirect ke halamann not found
+            App::abort('404');
+        }
+    }   
 
     /**
      * Show the form for creating a new resource.
