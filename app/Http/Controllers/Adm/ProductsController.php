@@ -40,9 +40,11 @@ class ProductsController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
-    {
-        Products::create($request->all());
+    public function store(Request $request, Products $products)
+    {   
+        $data = $request->all();
+        $data['slug'] = $products->getSlug($request->get('name'));
+        $products->create($data);
         return redirect('adm/products');
     }
 

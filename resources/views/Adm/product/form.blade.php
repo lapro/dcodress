@@ -1,3 +1,5 @@
+<div class='row'>
+<div class='col-md-6'>
 		<div class="form-group">
 			{!! Form::label('name','Name :') !!}
 			{!! Form::text('name',@$products->name,['class'=>'form-control','required']) !!}
@@ -23,10 +25,19 @@
 			{!! Form::label('status','Status :') !!}
 			{!! Form::select('status',['available'=>'available','sold'=>'sold'],@$products->status, ['id'=>'products', 'class'=>'form-control'])!!}
 		</div>
-		@endif
-
 		<div class="form-group">
-			{!! Form::submit($submitButtonText,['class'=>'btn btn-primary form-control']) !!}
+			{!! Form::label('slug','Slug :') !!}
+			{!! Form::text('slug',@$products->slug, ['id'=>'slug', 'class'=>'form-control'])!!}
+		</div>
+		@endif
+</div>
+<div class='coml-md-6'>
+	Upload Images :
+</div>
+</div>
+<div class='clearfix'></div>
+		<div class="form-group">
+			{!! Form::submit($submitButtonText,['class'=>'btn btn-primary pull-right']) !!}
 		</div>
 	
 	
