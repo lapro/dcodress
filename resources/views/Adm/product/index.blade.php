@@ -1,6 +1,8 @@
 @extends('adm/template')
 
 @section('content')
+<div class="box">
+    <div class="box-body">
 <h1>Product</h1>
  <a class="btn btn-primary pull-right" id="sign"  href="{!! url('adm/products/create') !!}"><i class="icon-g-circle-plus"></i>Add Item</a>
     <table class='table table-bordered' id='datatables'>
@@ -12,6 +14,7 @@
           <th>Original Price</th>
           <th>Price</th>
           <th>Status</th>
+          <th>Action</th>
         </tr>
         </thead>
         <tbody>
@@ -19,7 +22,8 @@
         </tbody>
     </table>
 @stop
-
+</div>
+</div>
 @section('footer')
 
  {!!Html::script("assets/Laravel/laravel.methodHandler.js")!!}
@@ -39,9 +43,16 @@
                     { data: 'description', name: 'description' },
                     { data: 'original_price', name: 'original_price' },
                     { data: 'price', name: 'price' },
-                    { data: 'status', name: 'status' }
+                    { data: 'status', name: 'status' },
+                    { data: 'action', name: 'action', orderable: false, searchable: false}
                 ]
-            });
+            }).on('draw.dt',function(){
+                   $('a[data-method]').click(function(e){
+                      var token='<?php echo csrf_token(); ?>';
+                      handleMethod(e,$(this),token);
+                      e.preventDefault();
+                   });
+                });
         });
     });
      

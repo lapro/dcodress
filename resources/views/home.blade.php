@@ -151,6 +151,7 @@ Copyright - 2015 dcodress.com
 </script>
 
 {!!Html::script('assets/bootstrap/js/bootstrap.min.js')!!}
+
 @yield('footer')
 </body>
 </html>

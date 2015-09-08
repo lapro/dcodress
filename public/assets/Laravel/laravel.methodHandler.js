@@ -1,4 +1,4 @@
- function handleMethod(e , here) {
+ function handleMethod(e , here, token) {
       var link = here;
       var httpMethod = link.data('method').toUpperCase();
       var form;
@@ -14,7 +14,7 @@
         if ( ! verifyConfirm(link) ) {
           return false;
         }else{
-           form = createForm(link);
+           form = createForm(link, token);
            form.submit();
         }
       }
@@ -27,7 +27,7 @@
       return confirm(link.data('confirm'));
     }
  
-  function createForm (link) {
+  function createForm (link, tokens) {
       var form = 
       $('<form>', {
         'method': 'POST',
@@ -37,8 +37,8 @@
       var token = 
       $('<input>', {
         'type': 'hidden',
-        'name': 'csrf_token',
-          'value': '<?php echo csrf_token(); ?>' // hmmmm...
+        'name': '_token',
+          'value': tokens // hmmmm...
         });
  
       var hiddenInput =
