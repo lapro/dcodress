@@ -1,12 +1,25 @@
 @extends('adm/template')
 
 @section('content')
-	<h1>Edit Product: {!! $products->name !!} </h1>
+<div class='row'>
 	{!! Form::model($products, ['method'=>'PATCH','action'=>  ['Adm\ProductsController@update',$products->id]]) !!}
-		
-		@include('adm/product/form',['submitButtonText'=>'Change Item'])
+<div class='col-md-6'>
+<div class='box '>
+	<div class='box-header'>
+<h3 class='box-title'>Edit Product</h3>
+</div>
+<div class='box-body '>
 	
-	{!! Form::close() !!}
 
+
+	@include('adm/product/form',['submitButtonText'=>'Add Item'])
+	
 	@include('errors.list')
+	
+</div>
+{!! Form::close() !!}
+</div>
+
+</div> <!-- end col-md-6 -->
+</div>
 @stop

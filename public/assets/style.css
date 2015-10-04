@@ -29,10 +29,11 @@
   .li{
     margin-bottom: 5px;
   }
-
-  body{
-  font-size: 10pt;
+body{
+  background: aliceblue;
 }
+
+
 .navbar .brand {
 /*max-height: 40px;*/
 overflow: visible;
@@ -53,7 +54,6 @@ color: black;
 .nav > li > a:hover, .nav > li > a:focus {
 color: red;
 background-color: transparent;
-border-bottom: 1px solid red;
 }
 
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
@@ -67,3 +67,18 @@ background-color: transparent;
           box-shadow: 0 8px 6px -6px black;
 }
 
+button.close {
+position: absolute;
+top: -12px;
+right: 6px;
+opacity: 1;
+z-index: 100;
+}
+
+.daftar{
+  color:white;
+}
+
+.daftar a:hover{
+  color:red;
+}

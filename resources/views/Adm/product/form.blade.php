@@ -1,15 +1,26 @@
-<div class='row'>
-<div class='col-md-6'>
+
 		<div class="form-group">
 			{!! Form::label('name','Name :') !!}
 			{!! Form::text('name',@$products->name,['class'=>'form-control','required']) !!}
 		</div>
-
 		<div class="form-group">
-			{!! Form::label('original_price','Original Price :') !!}
+			<label> Capital Price<small> (harga modal)</small> :</label>
+			{!! Form::input('number','capital_price',@$products->capital_price,['class'=>'form-control','required']) !!}
+		</div>
+		<div class="form-group">
+			
+			<label> Original Price<small> (harga jual)</small> :</label>
 			{!! Form::input('number','original_price',@$products->original_price,['class'=>'form-control','required']) !!}
 		</div>
-
+		
+		<div class="form-group">
+			<label> Minimum Price<small> (harga minimun jual)</small> :</label>
+			{!! Form::input('number','min_price',0,['class'=>'form-control','required']) !!}
+		</div>
+		<div class="form-group">
+			<label> Weight :</label>
+			{!! Form::input('number','weight',0,['class'=>'form-control','required','step'=>'any']) !!}
+		</div>
 		<div class="form-group">
 			{!! Form::label('description','Description :') !!}
 			{!! Form::textarea('description',@$products->description,['class'=>'form-control','required']) !!}
@@ -30,11 +41,7 @@
 			{!! Form::text('slug',@$products->slug, ['id'=>'slug', 'class'=>'form-control'])!!}
 		</div>
 		@endif
-</div>
-<div class='coml-md-6'>
-	Upload Images :
-</div>
-</div>
+
 <div class='clearfix'></div>
 		<div class="form-group">
 			{!! Form::submit($submitButtonText,['class'=>'btn btn-primary pull-right']) !!}

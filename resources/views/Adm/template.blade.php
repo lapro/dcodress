@@ -27,6 +27,8 @@
 
   {!!Html::script('assets/jquery/jquery-2.1.4.min.js')!!}
   {!!Html::style("assets/datatables/jquery.dataTables.css")!!}
+
+  @yield('head')
   </head>
   <body class="skin-blue sidebar-mini">
     <div class="wrapper">
@@ -143,6 +145,14 @@
         <!-- Main content -->
         <section class="content">
 
+          <?php 
+          if(Session::has('message')):
+          ?>
+          <div class='alert alert-<?= $_SESSION['message']['status'] ?>'>
+          <?= $_SESSION['message']['body']?>
+          </div>
+          <?php endif; ?>
+
          @yield("content")
         
         </section><!-- /.content -->
@@ -176,6 +186,7 @@
     <script src="{!! asset('') !!}/assets/template/js/app.min.js" type="text/javascript"></script>    
     
    {!!Html::script("assets/datatables/jquery.dataTables.js")!!}
+  {!!Html::script("assets/dcodress-cart.js")!!}
    @yield('footer')
   </body>
 </html>

@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Model\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use App\Libraries\SocialLoginTrait;
+use App\Http\Requests;
+use DB;
+use Request;
 
 class AuthController extends Controller
 {
@@ -21,7 +25,9 @@ class AuthController extends Controller
     |
     */
 
-    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
+    use AuthenticatesAndRegistersUsers, ThrottlesLogins, SocialLoginTrait;
+
+    public $redirectTo = "/";
 
     /**
      * Create a new authentication controller instance.
@@ -32,6 +38,7 @@ class AuthController extends Controller
     {
         $this->middleware('guest', ['except' => 'getLogout']);
     }
+
 
     /**
      * Get a validator for an incoming registration request.
@@ -55,11 +62,37 @@ class AuthController extends Controller
      * @return User
      */
     protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+    {   
+        DB::beginTransaction();
+
+        try{
+
+            $user = User::create([
+                'name' => ucfirst($data['name']),
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+            ]);
+            $user->assignRole(4);
+
+        }catch(\Exception $e){
+
+            DB::rollback();
+            throw $e;
+        }    
+
+        DB::commit();
+
+        return $user;
     }
+
+    public function getLogin(){
+
+        if(Request::ajax()){
+            return view("auth.modal_login");
+        }
+
+        return view("auth.login");
+    }
+
+    
 }

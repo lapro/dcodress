@@ -144,7 +144,13 @@ return [
         App\Providers\AppServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+         /*
+        *   Socialite
+        */
+        Laravel\Socialite\SocialiteServiceProvider::class,
+
         yajra\Datatables\DatatablesServiceProvider::class,
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
 
     ],
 
@@ -196,6 +202,9 @@ return [
         'Form'      => Illuminate\Html\FormFacade::class, 
         'Html'      => Illuminate\Html\HtmlFacade::class,
         'Datatables' => yajra\Datatables\Datatables::class,
+          // socialite
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Cart'            => Gloudemans\Shoppingcart\Facades\Cart::class,
 
     ],
 
