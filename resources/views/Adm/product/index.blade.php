@@ -1,11 +1,17 @@
 @extends('adm/template')
 
 @section('content')
+<<<<<<< HEAD
 <div class='box'>
 <div class='box-header'>
 <h3 class='box-title'>Product</h3>
 </div>
 <div class='box-body'>
+=======
+<div class="box">
+    <div class="box-body">
+<h1>Product</h1>
+>>>>>>> origin/master
  <a class="btn btn-primary pull-right" id="sign"  href="{!! url('adm/products/create') !!}"><i class="icon-g-circle-plus"></i>Add Item</a>
  <br><br>
     <table class='table table-bordered' id='datatables'>
@@ -29,7 +35,8 @@
 </div>
 </div>
 @stop
-
+</div>
+</div>
 @section('footer')
 
  {!!Html::script("assets/Laravel/laravel.methodHandler.js")!!}
@@ -51,6 +58,7 @@
                     { data: 'original_price', name: 'original_price' },
                     { data: 'capital_price', name: 'capital_price' },
                     { data: 'price', name: 'price' },
+<<<<<<< HEAD
                     { data: 'sharing_count', name: 'sharing_count' },
                     { data: 'status', name: 'status' },
                     {data: 'action', name: 'action', orderable: false, searchable: false}
@@ -65,6 +73,18 @@
             });
 
 
+=======
+                    { data: 'status', name: 'status' },
+                    { data: 'action', name: 'action', orderable: false, searchable: false}
+                ]
+            }).on('draw.dt',function(){
+                   $('a[data-method]').click(function(e){
+                      var token='<?php echo csrf_token(); ?>';
+                      handleMethod(e,$(this),token);
+                      e.preventDefault();
+                   });
+                });
+>>>>>>> origin/master
         });
     });
      

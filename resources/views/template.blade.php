@@ -180,7 +180,6 @@ Copyright - 2015 dcodress.com
 
 
 
-
 @yield('footer')
 </body>
 </html>

@@ -206,6 +206,7 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Cart'            => Gloudemans\Shoppingcart\Facades\Cart::class,
 
+
     ],
 
 ];

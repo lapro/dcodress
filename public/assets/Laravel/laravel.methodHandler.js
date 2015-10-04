@@ -1,4 +1,5 @@
  function handleMethod(e , here, _token) {
+
       var link = here;
       var httpMethod = link.data('method').toUpperCase();
       var form;
@@ -15,6 +16,7 @@
           return false;
         }else{
            form = createForm(link, _token);
+
            form.submit();
         }
       }
@@ -28,6 +30,7 @@
     }
  
   function createForm (link, _token) {
+
       var form = 
       $('<form>', {
         'method': 'POST',
@@ -39,6 +42,7 @@
         'type': 'hidden',
         'name': '_token',
           'value': _token // hmmmm...
+
         });
  
       var hiddenInput =

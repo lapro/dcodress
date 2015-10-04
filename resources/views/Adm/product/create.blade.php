@@ -15,6 +15,7 @@
 	@include('adm/product/form',['submitButtonText'=>'Add Item'])
 	
 	@include('errors.list')
+<<<<<<< HEAD
 	
 </div>
 {!! Form::close() !!}
@@ -22,4 +23,7 @@
 
 </div> <!-- end col-md-6 -->
 </div>
+=======
+
+>>>>>>> origin/master
 @stop

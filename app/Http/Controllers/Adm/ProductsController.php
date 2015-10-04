@@ -101,6 +101,7 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
+<<<<<<< HEAD
         Product::findOrFail($id)->delete();
         return redirect()->route('adm/products');
     }
@@ -157,5 +158,18 @@ class ProductsController extends Controller
         $response = $product->find($id)->deleteImage( $filename );
  
         return $response;
+=======
+        Products::findOrFail($id)->delete();
+        return redirect('adm/products');
     }
+
+    public function datatables(){
+  
+       return Datatables::of(Products::select('*'))->addColumn('action', function ($products) {
+                return '<a href="'.url("adm/products/".$products->id.'/edit').'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>
+                <a href="'.url("adm/products/".$products->id).'" class="btn btn-xs btn-primary" data-method = "DELETE" data-confirm="Are you sure want to wipe this data?" ><i class="glyphicon glyphicon-edit"></i> Delete</a>';
+            })->make(true);
+>>>>>>> origin/master
+    }
+
 }

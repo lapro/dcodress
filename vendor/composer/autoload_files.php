@@ -16,8 +16,10 @@ return array(
     $vendorDir . '/danielstjules/stringy/src/Create.php',
     $vendorDir . '/laravelcollective/html/src/helpers.php',
     $vendorDir . '/guzzlehttp/guzzle/src/functions_include.php',
+    $vendorDir . '/illuminate/html/helpers.php',
     $vendorDir . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
     $vendorDir . '/laravel/framework/src/Illuminate/Support/helpers.php',
     $vendorDir . '/illuminate/html/helpers.php',
     $baseDir . '/app/Helpers.php',
+
 );
