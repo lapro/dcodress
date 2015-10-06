@@ -17,6 +17,127 @@
 <!-- Default Theme -->
 <link rel="stylesheet" href="{!! asset('assets/owl-carousel/owl.transitions.css')!!}">
 
+<style>
+/* Absolute Center CSS Spinner */
+.loading {
+  position: fixed;
+  z-index: 999;
+  height: 2em;
+  width: 2em;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+/* Transparent Overlay */
+.loading:before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* :not(:required) hides these rules from IE9 and below */
+.loading:not(:required) {
+  /* hide "loading..." text */
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+.loading:not(:required):after {
+  content: '';
+  display: block;
+  font-size: 10px;
+  width: 1em;
+  height: 1em;
+  margin-top: -0.5em;
+  -webkit-animation: spinner 1500ms infinite linear;
+  -moz-animation: spinner 1500ms infinite linear;
+  -ms-animation: spinner 1500ms infinite linear;
+  -o-animation: spinner 1500ms infinite linear;
+  animation: spinner 1500ms infinite linear;
+  border-radius: 0.5em;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.5) -1.5em 0 0 0, rgba(0, 0, 0, 0.5) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+  box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) -1.5em 0 0 0, rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+}
+
+/* Animation */
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+</style>
   @yield('header')
 
 <!--Start of Zopim Live Chat Script-->
@@ -54,18 +175,19 @@ type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
 <div style=' padding-bottom:5px' class='row '>
 <div class='col-xs-6'>
 <ul class="nav nav-pills  " >
-  <li role="presentation" class=""><a href="#">ReadMe</a></li>
-  <li role="presentation"><a href="#">Event</a></li>
-  <li role="presentation"><a href="#">Pesan</a></li>
+  <li role="presentation" class=""><a href="#">Konfirmasi</a></li>
+
 </ul>
 </div>
 <div class='col-xs-6 '>
 <ul class="nav nav-pills pull-right" >
   
-  <li role="presentation"><a href="{{ url('cart') }}" data-toggle='modal' data-target='#remote-modal-sm'><i class='fa fa-shopping-cart'></i> <span class="badge">{!! Cart::count() !!}</span></a></li>
+  <li role="presentation"><a href="#" data-toggle='modal' data-target='#modal-cart'><i class='fa fa-shopping-cart'></i> <span class="badge" id='jumlah-cart'>{!! Cart::count() !!}</span></a></li>
 
   @if(Auth::check())
-  <li role="presentation"><a href="{{ url('auth/logout') }}" ><i class='fa fa-sign-out'></i> Logout</a></li>
+  <li role="presentation" class=""><a href="#">Transaksi</a></li>
+  <li role="presentation"><a href="{{ url('logout') }}" ><i class='fa fa-sign-out'></i> Logout</a></li>
+
   @else
   <li role="presentation"><a href="{{ url('login') }}" data-toggle="modal" data-target="#remote-modal-sm"><i class='fa fa-sign-in'></i> Login</a></li>
   @endif
@@ -139,29 +261,16 @@ Copyright - 2015 dcodress.com
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->
             </div>
+
+            <!-- modal CART -->
+
 {!!Html::script('assets/bootstrap/js/bootstrap.min.js')!!}
 {!!Html::script('assets/jquery-cookies/js.cookie.js')!!}
 <!-- Include js plugin -->
 <script src="{!! asset('assets/owl-carousel/owl.carousel.js') !!}"></script>
 
 <script type="text/javascript">
-  /* get variable from URL */
-  $.urlParam = function(name){
-    var results = new RegExp('[\#&]' + name + '=([^&#]*)').exec(window.location.href);
-    if (results==null){
-       return null;
-    }
-    else{
-       return results[1] || 0;
-    }
-  }
 
-  $(window).load(function(){
-    var share = decodeURIComponent($.urlParam('share'));
-    if(share !='true' && Cookies.get('welcome')==null){
-      $('#myModal').modal("show");
-    }
-  });
 
 
   $(document.body).on('hidden.bs.modal', function ()
@@ -170,16 +279,16 @@ Copyright - 2015 dcodress.com
     $('#remote-modal-sm').removeData('bs.modal');
   });
 
-  $(document).ready(function(){
-    $('#dont_show_again').click(function(){
-        Cookies.set('welcome', 'false', { expires: 30 });
-    });
-  });
+
+
 
 </script>
 
 
 
 @yield('footer')
+
+@include('butik.cart.index')
+
 </body>
 </html>

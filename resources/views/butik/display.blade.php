@@ -50,7 +50,7 @@
                 <div style='border-top:1px #c0c0c0; text-align:center'>     <span title="The tooltip" data-toggle="tooltip" data-placement="top"><a href='{{url('share/'.$product->slug)}}' class="btn btn-default"  data-toggle="modal" data-target="#remote-modal-sm" style="margin:5px;" id='share_button'  > <i class='fa fa-hand-paper-o'></i><br> Get Your Price </a></span>
 
                       
-                      <a href="{{ url("cart/add/".$product->slug)}}" class="btn btn-danger " style="margin:5px 5px 5px 0px" data-toggle="modal" data-target="#remote-modal-sm">
+                      <a href="#" class="btn btn-danger " style="margin:5px 5px 5px 0px" data-toggle="modal" data-target="#modal-cart" data-tipe='add' data-slug='{!! $product->slug !!}'>
                         <i class='fa fa-shopping-cart'></i><br>
                        Pick Your Dress</a>
                       <div class="clearfix">
@@ -65,7 +65,7 @@
 </div>
 <br><br><br>
 <center>
-<small>Cari yang lebih menarik lagi,</small><br>
+<small>Random pencarian,</small><br>
 <a href='#' class='btn btn-primary shadow'><i class='fa fa-search'></i> Liat-liat yang lain ~</a>
 </center>
 @stop
@@ -77,12 +77,7 @@
 @section('footer')
   <script type="text/javascript">
 
-      var share = decodeURIComponent($.urlParam('share'));
-      if(share == 'true'){
-          
-          $('#share_button').trigger('click');
-          console.log('ass');
-      }
+      
 
       $("#owl-display").owlCarousel({
   
@@ -99,5 +94,38 @@
       // itemsMobile : false
  
       });
+      /*
+      var share = decodeURIComponent($.urlParam('share'));
+      if(share == 'true'){
+          
+          $('#share_button').trigger('click');
+          console.log('ass');
+      }
+
+          /* get variable from URL 
+  $.urlParam = function(name){
+    var results = new RegExp('[\#&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results==null){
+       return null;
+    }
+    else{
+       return results[1] || 0;
+    }
+  }
+
+  $(window).load(function(){
+    var share = decodeURIComponent($.urlParam('share'));
+    if(share !='true' && Cookies.get('welcome')==null){
+      $('#myModal').modal("show");
+    }
+  });
+  
+  $(document).ready(function(){
+    $('#dont_show_again').click(function(){
+        Cookies.set('welcome', 'false', { expires: 30 });
+    });
+
+  });*/
+    
   </script>
 @stop
