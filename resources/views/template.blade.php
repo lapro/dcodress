@@ -7,6 +7,8 @@
 	{!!Html::script('assets/jquery/jquery-2.1.4.min.js')!!}
   <link href="{{ asset('assets/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
   {!!Html::style('assets/style.css')!!}
+  {!!Html::style('assets/loading.css')!!}
+  {!!Html::style('assets/stepbystep.css')!!}
 
 <!-- Important Owl stylesheet -->
 <link rel="stylesheet" href="{!! asset('assets/owl-carousel/owl.carousel.css')!!}">
@@ -16,128 +18,7 @@
 
 <!-- Default Theme -->
 <link rel="stylesheet" href="{!! asset('assets/owl-carousel/owl.transitions.css')!!}">
-
-<style>
-/* Absolute Center CSS Spinner */
-.loading {
-  position: fixed;
-  z-index: 999;
-  height: 2em;
-  width: 2em;
-  overflow: show;
-  margin: auto;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-}
-
-/* Transparent Overlay */
-.loading:before {
-  content: '';
-  display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-/* :not(:required) hides these rules from IE9 and below */
-.loading:not(:required) {
-  /* hide "loading..." text */
-  font: 0/0 a;
-  color: transparent;
-  text-shadow: none;
-  background-color: transparent;
-  border: 0;
-}
-
-.loading:not(:required):after {
-  content: '';
-  display: block;
-  font-size: 10px;
-  width: 1em;
-  height: 1em;
-  margin-top: -0.5em;
-  -webkit-animation: spinner 1500ms infinite linear;
-  -moz-animation: spinner 1500ms infinite linear;
-  -ms-animation: spinner 1500ms infinite linear;
-  -o-animation: spinner 1500ms infinite linear;
-  animation: spinner 1500ms infinite linear;
-  border-radius: 0.5em;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.5) -1.5em 0 0 0, rgba(0, 0, 0, 0.5) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
-  box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) -1.5em 0 0 0, rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
-}
-
-/* Animation */
-
-@-webkit-keyframes spinner {
-  0% {
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-@-moz-keyframes spinner {
-  0% {
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-@-o-keyframes spinner {
-  0% {
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-@keyframes spinner {
-  0% {
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
-</style>
+ 
   @yield('header')
 
 <!--Start of Zopim Live Chat Script-->
@@ -172,21 +53,42 @@ type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
 
 	<div class="container" style=" background:#fff;">
   
-<div style=' padding-bottom:5px' class='row '>
-<div class='col-xs-6'>
+<div style=' padding-bottom:4px' class='row '>
+<div class='col-xs-4'>
 <ul class="nav nav-pills  " >
-  <li role="presentation" class=""><a href="#">Konfirmasi</a></li>
-
+   <li class="dropdown" id="menuLogin">
+            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin"><i class='fa fa-check'></i><span class='hidden-xs'>  Status Pesanan</span></a>
+            <div class="dropdown-menu" style="padding:17px;width:300px">
+              <form class="form" id="formLogin" action="{!! url('cek-pesanan') !!}" method="GET"> 
+                <div class="form-group">
+                {!! Form::label('email','Email :') !!}
+                <input name="email" id="username" class='form-control' type="text" placeholder="Email"> 
+              </div>
+              <div class="form-group">
+                {!! Form::label('kode','Kode :') !!}
+                <input name="kode" id="password" class='form-control' type="text" placeholder="Kode Pesanan">
+              </div>
+              <div class="form-group">
+                <button type="submit" id="btnLogin" class="btn">Periksa</button>
+              </div>
+              </form>
+            </div>
+  </li>
+  <li role="presentation" class=""><a href="#"> <i class='fa fa-bullhorn'></i><span class='hidden-xs'>  Pengumuman</span></a></li>
 </ul>
 </div>
-<div class='col-xs-6 '>
+<div class='col-xs-8 '>
 <ul class="nav nav-pills pull-right" >
   
   <li role="presentation"><a href="#" data-toggle='modal' data-target='#modal-cart'><i class='fa fa-shopping-cart'></i> <span class="badge" id='jumlah-cart'>{!! Cart::count() !!}</span></a></li>
 
   @if(Auth::check())
-  <li role="presentation" class=""><a href="#">Transaksi</a></li>
-  <li role="presentation"><a href="{{ url('logout') }}" ><i class='fa fa-sign-out'></i> Logout</a></li>
+  
+  <li role="presentation" class=""><a href="#"><i class='fa fa-money'></i> <span class='hidden-xs'>Transaksi</span></a></li>
+  <li role="presentation" class=""><a href="#"><i class='fa fa-list'></i> <span class='hidden-xs'>Katalog</span></a></li>
+         
+  <li role="presentation"><a href="{{ url('settings') }}" ><i class='fa fa-gear'></i> <span class='hidden-xs'>Settings</span> </a></li>
+  <li role="presentation"><a href="{{ url('logout') }}" ><i class='fa fa-sign-out'></i> <span class='hidden-xs'>Logout</span> </a></li>
 
   @else
   <li role="presentation"><a href="{{ url('login') }}" data-toggle="modal" data-target="#remote-modal-sm"><i class='fa fa-sign-in'></i> Login</a></li>
@@ -197,61 +99,101 @@ type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
 
 
   <nav class="navbar navbar-inverse shadow-arch-edges" style="height:60px;background-color:oldlace; border:none">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <div class="navbar-header hidden-xs">
+          <!--
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
+          -->
           <a class="navbar-brand" style="color:black;" href="#"><img src="{{asset('img/logo.png')}}"></a>
-
+          
         </div>  
          <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style='padding-top:5px;padding-right:30px'>
+    <!--
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style='padding-top:5px;padding-right:30px;z-index:9999;background:#fff;'>
+      -->
+      <div class='hidden-xs' style='padding-top:5px;padding-right:30px;'>
       <ul class="nav navbar-nav navbar-right" style='style="height:60px;'>
         <li class='' style='font-weight: bold; '><a href="{!! url("butik") !!}" ><span style='color:red;text-decoration:underline;'> BELANJA </span>  DI BUTIK</a></li>
-
-@if(Auth::check())
-@if(Auth::user()->hasRole("Bos") OR Auth::user()->hasRole("Supplier"))
-
-        <li class='' ><a href="{!! url("backoffice") !!}" class=''>BACKOFFICE </a></li>
-@endif
-@endif
-        <li class='' ><a href="{!! url("/") !!}" class=''>HOME </a></li>
+        <li class='' style='font-weight: bold;'><a href="{!! url("/") !!}" class=''>HOME </a></li>
       </ul>
-    </div><!-- /.navbar-collapse -->   
+    </div>
+
+
+<!-- nav mobile-->
+    <ul class="nav nav-pills hidden-md hidden-lg mobile-nav" style='padding:10px'> <li role="presentation" style="margin-right: 100px">
+        <a class="navbar-brand" style="color:black;margin-top:-10px;margin-left:-10px" href="#"><img src="{{asset('img/logo.png')}}" ></a>
+      </li>
+
+      <li class='' style='font-weight: bold; '><a href="{!! url("butik") !!}" ><span style='color:red;text-decoration:underline;'> BELANJA </span>  DI BUTIK</a></li>
+        <li class='' style='font-weight: bold;'><a href="{!! url("/") !!}" class=''><i class="fa fa-home"></i> </a></li>
+    </ul>
+      <!--
+    </div><!-- /.navbar-collapse 
+  -->   
     </nav>
 <br>
 <!-- Carousel
     ================================================== -->
-
+<div style='min-height: 500px'>
 @yield('content')
 
-
+</div>
 <div class='clearfix'></div>
-<footer >
-<div class='footer' style='margin:40px 10px 10px 10px; padding:10px'>
-Copyright - 2015 dcodress.com 
+<br><br>
+<footer>
+<div class='row' style='background:black;color:#fff;padding-top:20px'>
+<div class='col-md-2 col-xs-6 footer-grid' >
+  <ul class='nav nav-pills nav-stacked footer-link' style='margin:10px'>
+    <li><a href="#"> Home</a></li>
+    <li><a href="#"> Event </a></li>
+    <li><a href="#"> Kontes</a></li>
+    <li><a href="#"> Tutorial</a></li>
+    <li><a href="#"> Belanja Di Butik</a></li>
+  </ul>
 </div>
+<div class='col-md-2 col-xs-6 footer-grid' >
+  <ul class='nav nav-pills nav-stacked footer-link' style='margin:10px'>
+    <li><a href="#"> About </a></li>
+    <li><a href="#"> Contact</a></li>
+    <li><a href="#"> Team</a></li>
+    @if(Auth::check())
+          @if(Auth::user()->hasRole("Bos") OR Auth::user()->hasRole("Supplier"))
 
-</footer>
+                  <li class='' style='font-weight: bold;'><a href="{!! url("backoffice") !!}" class=''>
+                    <i class='fa fa-user-secret'></i>
+                   BACKOFFICE</a></li>
+          @endif
 
-<div id='myModal' class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-
-      <div class="modal-body">
-      </div>
-      <div class="modal-footer">
-        <input type="checkbox" id='dont_show_again'> ok, saya sudah tahu, jangan tampilkan lagi ! 
-        <button type="button" class="btn btn-default" data-dismiss="modal" style='margin-left:10px'><i class='fa fa-close'></i> Close</button>
-        
-      </div>
-
-    </div>
-  </div>
+          @endif
+  </ul>
 </div>
+<div class='clearfix hidden-md hidden-lg'></div>
+<div class='col-md-4 col-xs-6 footer-grid' style='color:#92999f'>
+<br>
+
+<a href="https://play.google.com/store/search?q=pub:dcodress.com">
+  <img alt="Get it on Google Play"
+       src="https://developer.android.com/images/brand/en_generic_rgb_wo_45.png" />
+</a><br><br>
+<a class="image" href="https://itunes.apple.com/us/app/blackhawk-v1.3.0/id422091119?mt=8&amp;uo=4" target="itunes_store" style="display:inline-block;overflow:hidden;background:url(http://linkmaker.itunes.apple.com/htmlResources/assets/images/web/linkmaker/badge_appstore-lrg.png) no-repeat;width:135px;height:40px;@media only screen{background-image:url(http://linkmaker.itunes.apple.com/htmlResources/assets/images/web/linkmaker/badge_appstore-lrg.svg);}"></a>
+
+</div>
+<div class='col-md-4 col-xs-6 footer-grid'>
+
+</div>
+<div class='clearfix'></div>
+<br>
+<div class='footer col-md-12' style='text-align:center;height:40px;padding:10px;color:#92999f'>
+Copyright @ 2015 dcodress.com 
+</div>
+</div>
+ </footer>
+
+
 
 
 <div class="modal fade" id="remote-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
@@ -271,7 +213,9 @@ Copyright - 2015 dcodress.com
 
 <script type="text/javascript">
 
-
+  $('.dropdown input, .dropdown label').click(function(e) {
+    e.stopPropagation();
+  });
 
   $(document.body).on('hidden.bs.modal', function ()
   {

@@ -7,7 +7,7 @@
     <!-- Bootstrap 3.3.4 -->
     <link href="{!! asset('') !!}/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />    
     <!-- FontAwesome 4.3.0 -->
-   
+    <link href="{{ asset('assets/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
     <!-- Ionicons 2.0.0 -->
      
     <!-- Theme style -->
@@ -146,8 +146,8 @@
           <?php 
           if(Session::has('message')):
           ?>
-          <div class='alert alert-<?= $_SESSION['message']['status'] ?>'>
-          <?= $_SESSION['message']['body']?>
+          <div class='alert alert-{!! Session::get("message.status") !!}'>
+          {!! Session::get("message.body") !!}
           </div>
           <?php endif; ?>
 

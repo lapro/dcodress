@@ -5,6 +5,8 @@
 
 Route::get('/', "HomeController@index");
 
+Route::get('/ajax/{grid}', "HomeController@grid");
+
 Route::get('register', "Auth\AuthController@getRegister");
 
 Route::post('register', "Auth\AuthController@postRegister");
@@ -17,6 +19,7 @@ Route::get('logout', "Auth\AuthController@getLogout");
 
 
 /* ----------------------         POSTING                -----------------------*/
+Route::get("submit", "Member\PostsController@getSubmit");
 
 Route::post("post/upload", "Member\PostsController@postUpload");
 
@@ -47,6 +50,10 @@ Route::group(["prefix"=>"backoffice", "middleware"=>"auth"],function(){
 
 	Route::resource('products',"Backoffice\ProductsController");
 
+	//invoices
+
+	Route::controller('invoices',"Backoffice\InvoicesController");
+
 });
 
 
@@ -62,10 +69,29 @@ Route::group(["prefix"=>"butik"], function(){
 	
 	Route::controller("/checkout", "Butik\CheckoutController");
 
+
+	Route::get('/random',"Butik\DisplayController@random");
+
 	Route::get("/{slug}", "Butik\DisplayController@index");
+
+	Route::get("/payment/konfirmasi", "Butik\PaymentController@getKonfirmasi");
+
+	Route::post("/payment/konfirmasi", "Butik\PaymentController@postKonfirmasi");
+
+	Route::get("/payment/{invoice}", "Butik\PaymentController@index");
+
+	Route::get('/share/{slug}', ['uses'=>"Butik\ShareController@index"]);
+	
+	Route::post('/share/{slug}/{provider}', ['uses'=>"Butik\ShareController@sharingDiscount"]);
 
 
 });
+
+
+Route::get("cek-pesanan","StatusPesananController@index");
+
+
+Route::controller("ongkir","OngkirController");
 
 /*
 

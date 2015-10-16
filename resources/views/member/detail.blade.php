@@ -9,7 +9,7 @@
 
 @section('content')
 <div class='row'>
-<div class='col-md-5'>
+<div class='col-md-5 col-md-offset-1'>
 <div class='col-md-12'>
 <img src="{!! url('posts/'.$post->image)!!}" style='width:100%;'/>
 </div>           

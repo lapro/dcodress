@@ -20,9 +20,9 @@ border-radius: 45px;
     
      <div class="col-md-12" >
       <div id='dc-basket'> </div>
-
-          <a href="{!! url('butik/checkout/shipping_detail') !!}" class='btn btn-primary pull-right shadow'> CHECKOUT <i class='fa fa-arrow-right'></i></a>
-
+@if(Cart::count()>0)
+          <a href="{!! url('butik/checkout/pengiriman') !!}" class='btn btn-primary pull-right shadow'> CHECKOUT <i class='fa fa-arrow-right'></i></a>
+@endif
           <a href="#" class='btn btn-link pull-right'><i class='fa fa-shopping-cart'></i> BELANJA LAGI</a>
           <div class='clearfix'></div>
             </div>

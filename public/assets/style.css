@@ -82,3 +82,20 @@ z-index: 100;
 .daftar a:hover{
   color:red;
 }
+
+.navbar-inverse .navbar-toggle {
+border-color: #333;
+background: #333;
+}
+
+.mobile-nav li a{
+  color:black;
+}
+
+.footer-grid{
+  min-height:200px;
+}
+
+.footer-link li a{
+  color:white;
+}

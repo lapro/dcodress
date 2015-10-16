@@ -9,7 +9,7 @@
 	<div class='col-md-12 ' >
 		<h3>Pilih Metode Pembayaran</h3>
 <div class='alert alert-warning'>
-		Transaksi anda sudah kami simpan, segera melakukan pembayaran paling lama <b>1x24 jam</b> agar kami bisa segera memproses transaksi anda.</div>
+		Transaksi anda sudah kami simpan, Detail transaksi sudah kami kirim ke email anda. Segera melakukan pembayaran paling lama <b>1x24 jam</b> agar kami bisa segera memproses transaksi anda.</div>
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingOne">
@@ -53,7 +53,7 @@
         <center>
         	Setelah melakukan pembayaran pada salah satu rekening diatas, kamu bisa langsung klik tombol dibawah ini untuk melakukan konfirmasi pembayaran.<br>
         	<br> 
-        	<a href="{!! url('checkout/confirmation/'.$invoice->kode)!!}" class='btn btn-primary shadow '>Konfirmasi Pembayaran</a></center>
+        	<a href="{!! url('butik/payment/konfirmasi?kode='.$invoice->kode.'&email='.$invoice->email)!!}" class='btn btn-primary shadow '>Konfirmasi Pembayaran</a></center>
       </div>
     </div>
   </div>
@@ -98,10 +98,10 @@
 		@foreach ($invoice->items as $key => $value) 
 		<tr>
 			<td colspan=2>
-				<div class='label label-primary pull-right'>1 pcs</div>
-				<span style='font-weight:bold;color:red'>Nama Set : {!! $value->name !!} </span>
+				<div class='label label-primary pull-right'>1 set</div>
+				<span style='font-weight:bold;color:red'> {!! $value->name !!} </span>
 				<br>
-				Harga : {!! toRupiah($value->price) !!} 
+				 {!! toRupiah($value->price) !!} 
 			</td>
 			
 		</tr>
@@ -113,7 +113,7 @@
 			<td>Ongkos kirim</td><td>{!! toRupiah($invoice->ongkir) !!}</td>
 		</tr>
 		<tr style='background:#f4f4f4;font-weight:bold;color:blue'>
-			<td>GRAND TOTAL</td><td>{!! toRupiah($invoice->total) !!}</td>
+			<td>GRAND TOTAL</td><td>{!! $invoice->total !!}</td>
 		</tr>
 	</table>
 

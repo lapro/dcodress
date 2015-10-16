@@ -152,4 +152,5 @@ class ProductsController extends Controller
             ->removeColumn('id')
             ->make(true);
     }
+    
 }

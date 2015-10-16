@@ -47,7 +47,7 @@
               </div>
                 </div>
 
-                <div style='border-top:1px #c0c0c0; text-align:center'>     <span title="The tooltip" data-toggle="tooltip" data-placement="top"><a href='{{url('share/'.$product->slug)}}' class="btn btn-default"  data-toggle="modal" data-target="#remote-modal-sm" style="margin:5px;" id='share_button'  > <i class='fa fa-hand-paper-o'></i><br> Get Your Price </a></span>
+                <div style='border-top:1px #c0c0c0; text-align:center'>     <span title="The tooltip" data-toggle="tooltip" data-placement="top"><a href='{{url('butik/share/'.$product->slug)}}' class="btn btn-default"  data-toggle="modal" data-target="#remote-modal-sm" style="margin:5px;" id='share_button'  > <i class='fa fa-hand-paper-o'></i><br> Get Your Price </a></span>
 
                       
                       <a href="#" class="btn btn-danger " style="margin:5px 5px 5px 0px" data-toggle="modal" data-target="#modal-cart" data-tipe='add' data-slug='{!! $product->slug !!}'>
@@ -65,9 +65,28 @@
 </div>
 <br><br><br>
 <center>
-<small>Random pencarian,</small><br>
-<a href='#' class='btn btn-primary shadow'><i class='fa fa-search'></i> Liat-liat yang lain ~</a>
+<a href='{!! url("butik/random?p=".$product->slug)!!}' class='btn btn-primary shadow'><i class='fa fa-random'></i> Random Outfit ~</a>
 </center>
+
+<div id='myModal' class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-body">
+
+        Belanja, Sharing, Cari Inspirasi outfit anda disini :D
+
+
+      </div>
+      <div class="modal-footer">
+        <input type="checkbox" id='dont_show_again'> ok, jangan tampilkan lagi ! 
+        <button type="button" class="btn btn-default" data-dismiss="modal" style='margin-left:10px'><i class='fa fa-close'></i> Close</button>
+        
+      </div>
+
+    </div>
+  </div>
+</div>
 @stop
 
 @section('header')
@@ -94,15 +113,8 @@
       // itemsMobile : false
  
       });
-      /*
-      var share = decodeURIComponent($.urlParam('share'));
-      if(share == 'true'){
-          
-          $('#share_button').trigger('click');
-          console.log('ass');
-      }
 
-          /* get variable from URL 
+          
   $.urlParam = function(name){
     var results = new RegExp('[\#&]' + name + '=([^&#]*)').exec(window.location.href);
     if (results==null){
@@ -112,6 +124,14 @@
        return results[1] || 0;
     }
   }
+    
+      var share = decodeURIComponent($.urlParam('share'));
+      if(share == 'true'){
+          
+          $('#share_button').trigger('click');
+          console.log('ass');
+      }
+
 
   $(window).load(function(){
     var share = decodeURIComponent($.urlParam('share'));
@@ -125,7 +145,7 @@
         Cookies.set('welcome', 'false', { expires: 30 });
     });
 
-  });*/
+  });
     
   </script>
 @stop

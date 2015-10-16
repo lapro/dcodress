@@ -11,6 +11,7 @@ use App\Libraries\SocialLoginTrait;
 use App\Http\Requests;
 use DB;
 use Request;
+use Session;
 
 class AuthController extends Controller
 {
@@ -25,9 +26,13 @@ class AuthController extends Controller
     |
     */
 
+    public $redirectTo = "/";
+    
+    public $loginPath = "/login";
+
     use AuthenticatesAndRegistersUsers, ThrottlesLogins, SocialLoginTrait;
 
-    public $redirectTo = "/";
+
 
     /**
      * Create a new authentication controller instance.
@@ -35,7 +40,10 @@ class AuthController extends Controller
      * @return void
      */
     public function __construct()
-    {
+    {   
+        if(Session::has("redirectAfterLogin")){
+            $this->redirectTo = Session::get("redirectAfterLogin");
+        }
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 

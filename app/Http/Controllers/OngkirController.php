@@ -59,7 +59,7 @@ class OngkirController extends Controller
             ))->getBody();
         $decode = json_decode((string)$response);
         $result = $decode->rajaongkir->results;
-        $ongkir = ($this->ekstrakOngkir($result)-25000);
+        $ongkir = ($this->ekstrakOngkir($result));
         Session::put('ongkir',$ongkir);
         //dd( Session::get('ongkir'));  
         return $ongkir;
@@ -69,7 +69,11 @@ class OngkirController extends Controller
 
         $decode = $data[0];
         foreach ($decode->costs as $key => $value) {
-            if($value->service == "YES"){
+            if($value->service == "CTC"){
+                return (float) $value->cost[0]->value;
+            }elseif($value->service == "CTCOKE"){
+                return (float) $value->cost[0]->value;
+            }elseif($value->service == "YES"){
                 return (float) $value->cost[0]->value;
             }elseif($value->service == "REG"){
                 return (float) $value->cost[0]->value;
@@ -82,7 +86,7 @@ class OngkirController extends Controller
     public function getCountWeight(){
         $total_weight = 0;
         foreach (Cart::content() as $key => $value) {
-            $total_weight += (float) $value->options->weight;
+            $total_weight += (float) $value->options->detail->weight;
         }
 
         return $total_weight;

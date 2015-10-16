@@ -8,18 +8,22 @@
 <h3 style='border-bottom:1px dashed black ' class='checkout-form-title'>Konfirmasi Pembayaran</h3>
 <br>
 
-  {!! Form::open(['url'=>'checkout/confirmation/'.$kode,'class'=>'form-horizontal col-md-12']) !!}
+  {!! Form::open(['url'=>'butik/payment/konfirmasi/','class'=>'form-horizontal col-md-12']) !!}
 
      <div class="form-group">
       {!! Form::label('kode_transaksi','Kode Transaksi :') !!}
-      {!! Form::text('kode',@$kode,['class'=>'form-control',"required",'id'=>"kode_transaksi"]) !!}
+      {!! Form::text('kode',@$invoice->kode,['class'=>'form-control',"required",'id'=>"kode_transaksi"]) !!}
+    </div>
+    <div class="form-group">
+      {!! Form::label('email','Email :') !!}
+      {!! Form::text('email',@$invoice->email,['class'=>'form-control',"required",'id'=>"email"]) !!}
     </div>
     <div class="form-group">
       {!! Form::label('nama_bank','Nama Bank :') !!}
       {!! Form::text('from_bank_name',null,['class'=>'form-control',"required",'id'=>"kode_transaksi"]) !!}
     </div>
     <div class="form-group">
-      {!! Form::label('account_name','Nama Akun :') !!}
+      {!! Form::label('account_name','Atas Nama :') !!}
       {!! Form::text('from_account_name',null,['class'=>'form-control',"required",'id'=>"account_name"]) !!}
     </div>
     <div class="form-group">
@@ -38,7 +42,7 @@
     </div>
     <div class="form-group">
       {!! Form::label('trans_amount','Jumlah Transfer :') !!}
-      {!! Form::text('trans_amount',null,['class'=>'form-control',"required",'id'=>"trans_amount"]) !!}
+      {!! Form::text('trans_amount',(int) @$invoice->getOriginal('total'),['class'=>'form-control',"required",'id'=>"trans_amount"]) !!}
     </div>
     <div class="form-group">
       {!! Form::label('trans_date','Tanggal Transfer :') !!}

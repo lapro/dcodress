@@ -19,6 +19,12 @@ class PostsController extends Controller
          $this->middleware('auth');
     }
 
+
+    public function getSubmit(){
+
+        return view("member.submit");
+    }
+
     public function getIndex($kode){
 
         

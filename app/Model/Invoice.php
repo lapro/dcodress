@@ -8,15 +8,25 @@ use DB;
 use Auth;
 use Cart;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+
 class Invoice extends Model
 {
     //
+     use SoftDeletes;
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
     protected $table="invoices";
     protected $fillable = [
     	"kode",
     	"total",
     	"status",
-    	"user_id",
         "name",
         "email",
         "handphone",
@@ -53,19 +63,20 @@ class Invoice extends Model
     	$user_id = (Auth::check()) ? Auth::user()->id : Null;
     	$total = Cart::total() + $ongkirnya;
 
+        echo $ongkirnya;
+
     	$invoice = Invoice::create([
     		"kode"=>$kode,
     		"total"=>$total,
     		"status"=>1,
-    		"user_id"=>$user_id,
-            "name"=>$invoiceSess['user']['u_name'],
-            "email"=>$invoiceSess['user']['u_email'],
-            "handphone"=>$invoiceSess['user']['u_handphone'],
-            "province"=>$invoiceSess['destination']['province'],
-            "province_id"=>$invoiceSess['destination']['province_id'],
-            "city"=>$invoiceSess['destination']['city'],
-            "city_id"=>$invoiceSess['destination']['city_id'],
-            "address"=>$invoiceSess['destination']['address'],
+            "name"=>$invoiceSess['name'],
+            "email"=>$invoiceSess['email'],
+            "handphone"=>$invoiceSess['handphone'],
+            "province"=>$invoiceSess['province'],
+            "province_id"=>$invoiceSess['province_id'],
+            "city"=>$invoiceSess['city'],
+            "city_id"=>$invoiceSess['city_id'],
+            "address"=>$invoiceSess['address'],
             "ongkir"=>$ongkirnya,
     		]);
     	$insert =array();
@@ -97,6 +108,9 @@ class Invoice extends Model
     public function getStatusAttribute($value){
          $status = DB::table('invoice_status')->select('name')->where('id','=',$value)->first();
          return $status->name;
+    }
+     public function getTotalAttribute($value){
+         return toRupiah($value);
     }
 
     public function getPaymentMethodAttribute($value){

@@ -1,7 +1,7 @@
 	<link href="{{ asset('assets/bootstrap/css/bootstrap-social.css') }}" rel="stylesheet">
 
-	<h3>Login Form</h3>
-			<hr>
+
+			
 			{!! Form::open(['url'=>'login','class'=>'form-horizontal col-md-12']) !!}
 				<div class="form-group">
 					{!! Form::label('email','Email :') !!}

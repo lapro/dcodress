@@ -14,7 +14,8 @@ border-radius: 45px;
 <div class='row' >
     
     <div class="col-md-12" >
-
+	<h3>Login Form</h3>
+	<hr>
       @include('auth.form_login')
     
     </div>

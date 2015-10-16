@@ -1,6 +1,6 @@
 
 		<div class="form-group">
-			{!! Form::label('name','Nama Produk :') !!}
+			{!! Form::label('name','Nama Produk :',["style"]) !!}
 			{!! Form::text('name',@$products->name,['class'=>'form-control','required']) !!}
 		</div>
 		<div class="form-group">
