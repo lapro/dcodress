@@ -36,7 +36,7 @@
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist" style="">
     <li role="presentation" class="active"><a href="#upload" aria-controls="upload" role="tab" data-toggle="tab"><i class='fa fa-upload'></i> Upload</a></li>
-    <li role="presentation"><a href="#take" aria-controls="take" role="tab" data-toggle="tab"><i class='fa fa-camera'></i> Take a Pic</a></li>
+    <li role="presentation" class='hidden-lg hidden-md'><a href="#take" aria-controls="take" role="tab" data-toggle="tab"><i class='fa fa-camera'></i> Take a Pic</a></li>
       <li role="presentation"><a href="#create" aria-controls="take" role="tab" data-toggle="tab"><i class='fa fa-magic'></i> Create</a></li>
   </ul>
 
@@ -64,8 +64,20 @@
     
 <!-- ################## take #######################-->
     <div role="tabpanel" class="tab-pane" id="take">
-        <br><br>
-        cooming soon ..
+        
+        {!! Form::open(['url' => ('post/upload'), 'class' => 'dropzone', 'files'=>true, 'id'=>'form-share']) !!}
+ 
+                <div class="dz-message">
+ 
+                </div>
+
+               <div class="fileUpload btn btn-primary">
+                    <span>Take a pic</span>
+                    
+         <input type="file" accept="image/*" capture="camera" />
+                </div>
+
+                {!! Form::close() !!}
     </div>
     <div role="tabpanel" class="tab-pane" id="create">
         <br><br>
