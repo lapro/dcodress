@@ -38,7 +38,7 @@ return [
     'facebook' => [
         'client_id'=> '691323724302251',
         'client_secret' => 'bcf48834be377add2d0ee8ffcc594535',
-        'redirect' => 'http://localhost/dcodress/public/auth/social-login/facebook'
+        'redirect' => url('login/facebook')
     ],
 
 

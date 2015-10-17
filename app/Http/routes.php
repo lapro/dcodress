@@ -15,6 +15,12 @@ Route::get('login', "Auth\AuthController@getLogin");
 
 Route::post('login', "Auth\AuthController@postLogin");
 
+// SOCIAL LOGI [LOGIN dengan FACEBOOK atau GOOGLE Account]
+
+Route::get('login/{provider}','Auth\AuthController@getSocialLogin');
+
+//logout
+
 Route::get('logout', "Auth\AuthController@getLogout");
 
 

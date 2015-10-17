@@ -40,30 +40,34 @@ trait SocialLoginTrait
 
            //redirect to Home
 
-            return redirect('/member/');
+            return redirect($this->redirectTo);
         }
 
 	}
 
 	private function findOrCreateUser($userSoc, $provider){
+        
+        $dataUser = User::where("email","=",$userSoc->email);
 
-        $dataUser = User::firstOrNew(['email'=> $userSoc->email]);
-        $dataUser->avatar = $userSoc->avatar;
-        $dataUser->name = $userSoc->name;
-        $dataUser->save();
+        if(!empty($dataUser)){
+            $dataUser = User::create(['email'=> $userSoc->email]);
+            $dataUser->avatar = $userSoc->avatar;
+            $dataUser->name = $userSoc->name;
+            $dataUser->save();
 
 
-        $userRole = Role::whereName('member')->first();
-        $dataUser->assignRole($userRole);
+            $userRole = Role::whereName('member')->first();
+            $dataUser->assignRole($userRole);
 
-        $dataSocial = SocialLogin::firstOrNew(['user_id' => $dataUser->id]);
-        $dataSocial->provider = $provider;
-        $dataSocial->provider_id = $userSoc->id;
-        $dataSocial->social_token = $userSoc->token;
-        $dataSocial->save();
+            $dataSocial = SocialLogin::firstOrNew(['user_id' => $dataUser->id]);
+            $dataSocial->provider = $provider;
+            $dataSocial->provider_id = $userSoc->id;
+            $dataSocial->social_token = $userSoc->token;
+            $dataSocial->save();
 
-        $dataProfil = Profil::firstOrNew(['user_id'=>$dataUser->id]);
-        $dataProfil->save();
+            $dataProfil = Profil::firstOrNew(['user_id'=>$dataUser->id]);
+            $dataProfil->save();
+        }   
 
         return $dataUser;
     }

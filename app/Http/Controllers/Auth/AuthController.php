@@ -43,6 +43,7 @@ class AuthController extends Controller
     {   
         if(Session::has("redirectAfterLogin")){
             $this->redirectTo = Session::get("redirectAfterLogin");
+            Session::forget('redirectAfterLogin');
         }
         $this->middleware('guest', ['except' => 'getLogout']);
     }
