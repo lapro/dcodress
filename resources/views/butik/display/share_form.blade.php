@@ -41,7 +41,7 @@ function sharingDiscount(provider){
   })
   .done(function( msg ) {
     //alert( "Data Saved: " + msg );
-    location.location('{!! url("butik/$slug") !!}');
+    window.location = '{!! url("butik/$slug") !!}';
   });
 }
 
@@ -60,12 +60,11 @@ $('#fb-share-button').on("click",function(e){
   } else {
       console.log('Error while posting.');
   }
-
-  });
 */
 sharingDiscount('facebook');
-
   });
+
+
 
 
 

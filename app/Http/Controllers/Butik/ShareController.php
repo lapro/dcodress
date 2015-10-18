@@ -11,6 +11,10 @@ use Session;
 use App\Model\Product;
 use App\Model\SharingDiscount;
 
+use GuzzleHttp\ClientInterface;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Handler\CurlHandler;
+
 class ShareController extends Controller
 {
     /**
@@ -53,6 +57,8 @@ class ShareController extends Controller
             $sd->disc = $disc;
             $sd->save();
 
+            $this->tesFireBase($product->price, $product->slug);
+
             return response()->json(['error'=>false]);
         }
 
@@ -61,7 +67,28 @@ class ShareController extends Controller
         
    }
 
+   private function tesFireBase($harga,$slug){
+    //$slug="sunday-outfit";
+    $response=$this->getHttpClient()->put(
+        "https://glaring-fire-934.firebaseio.com/products/$slug.json",[
+        "json"=>[
+                    "price"=>$harga,
+                    "updated_at"=>date("Y-m-d")
+                ]
+        ]
+    );
+
+    return $response->getBody();
+   }
+
    private function makeDisc(){
         return 320;
    }
+
+    protected function getHttpClient()
+    {   
+        $handler = new \GuzzleHttp\Handler\CurlHandler();
+        $stack = HandlerStack::create($handler); // Wrap w/ middleware
+        return new \GuzzleHttp\Client(['handler' => $stack]);
+    }
 }

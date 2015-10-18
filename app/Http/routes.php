@@ -1,7 +1,7 @@
 <?php
 
 /* ----------------------         AUTH                -----------------------*/
-
+Route::get("tes","Butik\ShareController@tesFireBase");
 
 Route::get('/', "HomeController@index");
 

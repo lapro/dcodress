@@ -43,7 +43,7 @@
                   <br>
               <div style='text-align:center'>
               <span style="color:black;font-size:12pt"><strike>{{ toRupiah($product->original_price) }}</strike></span> <br>
-              <span style="color:red;font-size:18pt">{{ toRupiah($product->price) }}</span>
+              <span style="color:red;font-size:18pt" id='harga'>{{ toRupiah($product->price) }}</span>
               </div>
                 </div>
 
@@ -94,6 +94,7 @@
 @stop
 
 @section('footer')
+  <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
   <script type="text/javascript">
 
       
@@ -146,6 +147,30 @@
     });
 
   });
+
+
+// firebase --------------- realtime harga
+var ref = new Firebase("https://glaring-fire-934.firebaseio.com/products/{!! $product->slug !!}");
+// Get the data on a post that has changed
+ref.on("value", function(snapshot) {
+  var changedPost = snapshot.val();
+  var harga = toRp(changedPost.price);
+  console.log(changedPost.price);
+  $("#harga").html(harga);
+
+});
+
+function toRp(angka){
+    var rev     = parseInt(angka, 10).toString().split('').reverse().join('');
+    var rev2    = '';
+    for(var i = 0; i < rev.length; i++){
+        rev2  += rev[i];
+        if((i + 1) % 3 === 0 && i !== (rev.length - 1)){
+            rev2 += '.';
+        }
+    }
+    return 'Rp. ' + rev2.split('').reverse().join('') + ',00';
+}
     
   </script>
 @stop

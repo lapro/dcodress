@@ -5,10 +5,14 @@
 
 	{!!Html::style('assets/bootstrap/css/bootstrap.css')!!}
 	{!!Html::script('assets/jquery/jquery-2.1.4.min.js')!!}
+  {!!Html::script('assets/angularjs/angular.min.js')!!}
+
   <link href="{{ asset('assets/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
   {!!Html::style('assets/style.css')!!}
   {!!Html::style('assets/loading.css')!!}
   {!!Html::style('assets/stepbystep.css')!!}
+
+
 
 <!-- Important Owl stylesheet -->
 <link rel="stylesheet" href="{!! asset('assets/owl-carousel/owl.carousel.css')!!}">
