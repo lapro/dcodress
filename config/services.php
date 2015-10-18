@@ -35,11 +35,4 @@ return [
         'secret' => '',
     ],
 
-    'facebook' => [
-        'client_id'=> '691323724302251',
-        'client_secret' => 'bcf48834be377add2d0ee8ffcc594535',
-        'redirect' => url('login/facebook')
-    ],
-
-
 ];

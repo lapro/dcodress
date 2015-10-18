@@ -136,7 +136,6 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Illuminate\Html\HtmlServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -144,14 +143,14 @@ return [
         App\Providers\AppServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-         /*
+
+        /*
         *   Socialite
         */
         Laravel\Socialite\SocialiteServiceProvider::class,
-
+        Illuminate\Html\HtmlServiceProvider::class,
         yajra\Datatables\DatatablesServiceProvider::class,
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
-
     ],
 
     /*
@@ -199,14 +198,15 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
+
+
+        /* mine */
         'Form'      => Illuminate\Html\FormFacade::class, 
         'Html'      => Illuminate\Html\HtmlFacade::class,
         'Datatables' => yajra\Datatables\Datatables::class,
           // socialite
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Cart'            => Gloudemans\Shoppingcart\Facades\Cart::class,
-
-
     ],
 
 ];
