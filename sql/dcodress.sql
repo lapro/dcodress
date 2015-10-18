@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 04 Okt 2015 pada 13.34
+-- Generation Time: 17 Okt 2015 pada 03.46
 -- Versi Server: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `category_post` (
 `id` int(10) unsigned NOT NULL,
   `category_id` int(10) unsigned NOT NULL,
   `post_id` int(10) unsigned NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data untuk tabel `category_post`
@@ -57,7 +57,8 @@ CREATE TABLE IF NOT EXISTS `category_post` (
 
 INSERT INTO `category_post` (`id`, `category_id`, `post_id`) VALUES
 (2, 1, 1),
-(3, 1, 2);
+(3, 1, 2),
+(4, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -89,7 +90,7 @@ INSERT INTO `category_product` (`id`, `category_id`, `product_id`) VALUES
 CREATE TABLE IF NOT EXISTS `colors` (
 `id` int(10) unsigned NOT NULL,
   `name` varchar(50) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=43 ;
 
 --
 -- Dumping data untuk tabel `colors`
@@ -102,7 +103,10 @@ INSERT INTO `colors` (`id`, `name`) VALUES
 (36, '#CCCCCC'),
 (37, '#999999'),
 (38, '#E7D8B1'),
-(39, '#FFFF00');
+(39, '#FFFF00'),
+(40, '#333399'),
+(41, '#EA4C88'),
+(42, '#CC3333');
 
 -- --------------------------------------------------------
 
@@ -155,7 +159,6 @@ INSERT INTO `configuration` (`id`, `conf_key`, `conf_val`, `created_at`, `update
 CREATE TABLE IF NOT EXISTS `invoices` (
 `id` int(10) unsigned NOT NULL,
   `kode` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `user_id` int(10) unsigned DEFAULT NULL,
   `total` double(16,2) NOT NULL,
   `payment_method` int(10) unsigned NOT NULL,
   `status` int(10) unsigned NOT NULL,
@@ -173,21 +176,28 @@ CREATE TABLE IF NOT EXISTS `invoices` (
   `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `deleted_at` datetime NOT NULL,
   `ongkir` double(16,2) NOT NULL,
   `note` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data untuk tabel `invoices`
 --
 
-INSERT INTO `invoices` (`id`, `kode`, `user_id`, `total`, `payment_method`, `status`, `confirmation_date`, `verification_date`, `email`, `name`, `handphone`, `province`, `province_id`, `city`, `city_id`, `district`, `district_id`, `address`, `created_at`, `updated_at`, `ongkir`, `note`) VALUES
-(1, '20150918001', NULL, 255000.00, 2, 3, '2015-09-18', '2015-09-20', 'asdasd@asdasd.com', 'Angga Kesuma', '012931023192', 'Lampung', 18, 'Mesuji', 282, '', 0, 'Jl. Ukar koloklo akuma apa atuh..', '2015-09-18 06:32:38', '2015-09-20 09:47:59', 25000.00, 'JNE - 12312412312312'),
-(2, 'aadfasdf', NULL, 1000000.00, 1, 3, '0000-00-00', '2015-09-21', '', '', '', '', 0, '', 0, '', 0, '', '0000-00-00 00:00:00', '2015-09-20 18:58:20', 0.00, 'Akan kami antar pada tanggal 21 Maret 2015 ke alamat tujuan'),
-(3, 'asdasdfsadf', NULL, 0.00, 0, 1, '0000-00-00', '0000-00-00', '', '', '', '', 0, '', 0, '', 0, '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0.00, ''),
-(4, 'asdasdawewe', NULL, 0.00, 0, 1, '0000-00-00', '0000-00-00', '', '', '', '', 0, '', 0, '', 0, '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0.00, ''),
-(5, 'aawewefwef', NULL, 0.00, 0, 1, '0000-00-00', '0000-00-00', '', '', '', '', 0, '', 0, '', 0, '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0.00, ''),
-(6, '12312312312', NULL, 0.00, 0, 1, '0000-00-00', '0000-00-00', '', '', '', '', 0, '', 0, '', 0, '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0.00, '');
+INSERT INTO `invoices` (`id`, `kode`, `total`, `payment_method`, `status`, `confirmation_date`, `verification_date`, `email`, `name`, `handphone`, `province`, `province_id`, `city`, `city_id`, `district`, `district_id`, `address`, `created_at`, `updated_at`, `deleted_at`, `ongkir`, `note`) VALUES
+(1, '20150918001', 255000.00, 2, 3, '2015-09-18', '2015-10-15', 'asdasd@asdasd.com', 'Angga Kesuma', '012931023192', 'Lampung', 18, 'Mesuji', 282, '', 0, 'Jl. Ukar koloklo akuma apa atuh..', '2015-09-18 06:32:38', '2015-10-15 06:26:00', '0000-00-00 00:00:00', 25000.00, 'sdfsdfsdfsdf'),
+(2, 'aadfasdf', 1000000.00, 1, 3, '0000-00-00', '2015-09-21', '', '', '', '', 0, '', 0, '', 0, '', '0000-00-00 00:00:00', '2015-09-20 18:58:20', '0000-00-00 00:00:00', 0.00, 'Akan kami antar pada tanggal 21 Maret 2015 ke alamat tujuan'),
+(3, 'asdasdfsadf', 0.00, 0, 1, '0000-00-00', '0000-00-00', '', '', '', '', 0, '', 0, '', 0, '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0.00, ''),
+(4, 'asdasdawewe', 0.00, 0, 1, '0000-00-00', '0000-00-00', '', '', '', '', 0, '', 0, '', 0, '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0.00, ''),
+(5, 'aawewefwef', 0.00, 0, 1, '0000-00-00', '0000-00-00', '', '', '', '', 0, '', 0, '', 0, '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0.00, ''),
+(6, '12312312312', 0.00, 0, 1, '0000-00-00', '0000-00-00', '', '', '', '', 0, '', 0, '', 0, '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0.00, ''),
+(7, '20151007001', 200000.00, 0, 3, '2015-10-14', '2015-10-15', 'anggakesuma@gmail.com', 'angga kesuma', '09120318204912', 'Lampung', 18, 'Bandar Lampung', 21, '', 0, 'jl.lampung, smping polda pasar induk', '2015-10-06 17:51:57', '2015-10-15 06:14:11', '0000-00-00 00:00:00', 0.00, 'No. Resi : 1203129310239120\r\nTgl kirim : 0129390029'),
+(8, '20151007002', 200000.00, 0, 1, '0000-00-00', '0000-00-00', 'anggakesuma@gmail.com', 'angga kesuma', '09120318204912', 'Lampung', 18, 'Bandar Lampung', 21, '', 0, 'jl.lampung, smping polda pasar induk', '2015-10-06 17:52:13', '2015-10-06 17:52:13', '0000-00-00 00:00:00', 0.00, ''),
+(9, '20151007003', 915000.00, 0, 1, '0000-00-00', '0000-00-00', 'anggakesuma@gmail.com', 'angga kesuma', '089661147512', 'Sumatera Selatan', 33, 'Palembang', 327, '', 0, 'jl. sukakarya no.2227 palembang', '2015-10-07 05:49:05', '2015-10-07 05:49:05', '0000-00-00 00:00:00', 15000.00, ''),
+(10, '20151007004', 715000.00, 0, 1, '0000-00-00', '0000-00-00', 'anggakesuma@gmail.com', 'angga kesuma', '089661147512', 'Sumatera Selatan', 33, 'Palembang', 327, '', 0, 'khkj', '2015-10-07 06:49:13', '2015-10-07 06:49:13', '0000-00-00 00:00:00', 15000.00, ''),
+(11, '20151007005', 715000.00, 0, 1, '0000-00-00', '0000-00-00', 'anggakesuma@gmail.com', 'sadasd', 'asdasd', 'Sumatera Selatan', 33, 'Palembang', 327, '', 0, 'asdasdasd', '2015-10-07 07:21:27', '2015-10-07 07:21:27', '0000-00-00 00:00:00', 15000.00, ''),
+(12, '20151007006', 215000.00, 0, 1, '0000-00-00', '0000-00-00', 'asdasd', 'asasdasd', 'asdasd', 'Sumatera Selatan', 33, 'Palembang', 327, '', 0, 'asdasdasdasd', '2015-10-07 07:23:21', '2015-10-07 07:23:21', '0000-00-00 00:00:00', 15000.00, '');
 
 -- --------------------------------------------------------
 
@@ -205,7 +215,20 @@ CREATE TABLE IF NOT EXISTS `invoice_items` (
   `subtotal` double(16,2) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data untuk tabel `invoice_items`
+--
+
+INSERT INTO `invoice_items` (`id`, `invoice_id`, `product_id`, `name`, `qty`, `price`, `subtotal`, `created_at`, `updated_at`) VALUES
+(1, 7, 14, 'Biru merdeka', 1, 200000.00, 200000.00, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(2, 8, 14, 'Biru merdeka', 1, 200000.00, 200000.00, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(3, 9, 10, 'Sunday Outfit ', 1, 700000.00, 700000.00, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(4, 9, 14, 'Biru merdeka', 1, 200000.00, 200000.00, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(5, 10, 10, 'Sunday Outfit ', 1, 700000.00, 700000.00, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(6, 11, 10, 'Sunday Outfit ', 1, 700000.00, 700000.00, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(7, 12, 14, 'Biru merdeka', 1, 200000.00, 200000.00, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -226,14 +249,15 @@ CREATE TABLE IF NOT EXISTS `invoice_payment_by_transfer` (
   `to_account_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data untuk tabel `invoice_payment_by_transfer`
 --
 
 INSERT INTO `invoice_payment_by_transfer` (`id`, `invoice_id`, `trans_amount`, `trans_date`, `from_bank_name`, `from_rekening_number`, `from_account_name`, `to_bank_name`, `to_rekening_number`, `to_account_name`, `created_at`, `updated_at`) VALUES
-(1, 1, 120000.00, '2015-09-16', 'BCA', '1231231412', 'agus', 'BCA', '012931203123', 'Angga', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(1, 1, 120000.00, '2015-09-16', 'BCA', '1231231412', 'agus', 'BCA', '012931203123', 'Angga', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(2, 7, 200000.00, '2015-10-12', 'BCA', '0192102391234134', 'Angga Kesuma', 'BCA', '192312831924', 'Angga Kesuma', '2015-10-14 07:45:28', '2015-10-14 07:45:28');
 
 -- --------------------------------------------------------
 
@@ -244,7 +268,7 @@ INSERT INTO `invoice_payment_by_transfer` (`id`, `invoice_id`, `trans_amount`, `
 CREATE TABLE IF NOT EXISTS `invoice_status` (
 `id` int(10) unsigned NOT NULL,
   `name` varchar(100) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data untuk tabel `invoice_status`
@@ -253,7 +277,8 @@ CREATE TABLE IF NOT EXISTS `invoice_status` (
 INSERT INTO `invoice_status` (`id`, `name`) VALUES
 (1, 'Belum Konfirmasi'),
 (2, 'Menunggu Verifikasi'),
-(3, 'Selesai, Barang dalam pengiriman');
+(3, 'Barang Dalam Pengiriman'),
+(4, 'Selesai');
 
 -- --------------------------------------------------------
 
@@ -356,7 +381,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `description` varchar(255) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data untuk tabel `posts`
@@ -365,7 +390,8 @@ CREATE TABLE IF NOT EXISTS `posts` (
 INSERT INTO `posts` (`id`, `user_id`, `kode`, `image`, `description`, `updated_at`, `created_at`) VALUES
 (1, 3, 'c46f6658655da613542235e52ba7490f', 'c46f6658655da613542235e52ba7490f.jpg', 'Pink Blue sangat mempesona :D', '2015-10-02 02:03:15', '2015-10-02 02:02:35'),
 (2, 3, '98a85dc74b6724f3764935c7012d5841', '98a85dc74b6724f3764935c7012d5841.jpg', 'jn', '2015-10-02 05:37:17', '2015-10-02 05:36:24'),
-(3, 3, '5b5cd42e780414dfe2ffd88aa6afd1df', '5b5cd42e780414dfe2ffd88aa6afd1df.jpg', '', '2015-10-04 00:52:22', '2015-10-04 00:52:22');
+(3, 3, '5b5cd42e780414dfe2ffd88aa6afd1df', '5b5cd42e780414dfe2ffd88aa6afd1df.jpg', '', '2015-10-04 00:52:22', '2015-10-04 00:52:22'),
+(4, 3, '0e18823e68de9c309c51a9cff1223e62', '0e18823e68de9c309c51a9cff1223e62.jpg', 'ggggggg', '2015-10-12 01:44:13', '2015-10-12 01:43:52');
 
 -- --------------------------------------------------------
 
@@ -377,7 +403,7 @@ CREATE TABLE IF NOT EXISTS `post_color` (
 `id` int(10) unsigned NOT NULL,
   `post_id` int(10) unsigned NOT NULL,
   `color_id` int(10) unsigned NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=43 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=48 ;
 
 --
 -- Dumping data untuk tabel `post_color`
@@ -396,7 +422,12 @@ INSERT INTO `post_color` (`id`, `post_id`, `color_id`) VALUES
 (39, 3, 36),
 (40, 3, 33),
 (41, 3, 38),
-(42, 3, 37);
+(42, 3, 37),
+(43, 4, 33),
+(44, 4, 40),
+(45, 4, 41),
+(46, 4, 42),
+(47, 4, 34);
 
 -- --------------------------------------------------------
 
@@ -424,6 +455,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `weight` double(8,2) NOT NULL,
   `price` double(16,2) NOT NULL,
   `original_price` double(16,2) NOT NULL,
+  `stok` int(11) NOT NULL,
   `status` int(11) NOT NULL,
   `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `kode` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -436,10 +468,10 @@ CREATE TABLE IF NOT EXISTS `products` (
 -- Dumping data untuk tabel `products`
 --
 
-INSERT INTO `products` (`id`, `user_id`, `name`, `weight`, `price`, `original_price`, `status`, `description`, `kode`, `slug`, `created_at`, `updated_at`) VALUES
-(10, 3, 'Sunday Outfit ', 1.00, 700000.00, 600000.00, 0, 'Sangat cocok di gunakan pada hari minggu yang santai', '20151004001', 'sunday-outfit', '2015-10-03 19:31:55', '2015-10-03 19:31:55'),
-(14, 3, 'Biru merdeka', 1.00, 200000.00, 100000.00, 1, 'Warna biru untuk menyambut kemerdakaan RI', '20151004002', 'biru-merdeka', '2015-10-03 21:43:36', '2015-10-03 21:43:36'),
-(15, 3, 'Sexy tiny', 1.00, 300000.00, 200000.00, 1, 'sesy bangetzzz', '20151004003', 'sexy-tiny', '2015-10-04 03:23:20', '2015-10-04 03:23:20');
+INSERT INTO `products` (`id`, `user_id`, `name`, `weight`, `price`, `original_price`, `stok`, `status`, `description`, `kode`, `slug`, `created_at`, `updated_at`) VALUES
+(10, 3, 'Sunday Outfit ', 1.00, 699680.00, 600000.00, 1, 1, 'Sangat cocok di gunakan pada hari minggu yang santai', '20151004001', 'sunday-outfit', '2015-10-03 19:31:55', '2015-10-15 20:18:42'),
+(14, 3, 'Biru merdeka', 1.00, 199680.00, 100000.00, 1, 1, 'Warna biru untuk menyambut kemerdakaan RI', '20151004002', 'biru-merdeka', '2015-10-03 21:43:36', '2015-10-15 20:15:27'),
+(15, 3, 'Sexy tiny', 1.00, 299680.00, 200000.00, 1, 1, 'sesy bangetzzz', '20151004003', 'sexy-tiny', '2015-10-04 03:23:20', '2015-10-15 20:20:15');
 
 -- --------------------------------------------------------
 
@@ -484,7 +516,14 @@ CREATE TABLE IF NOT EXISTS `profil` (
   `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data untuk tabel `profil`
+--
+
+INSERT INTO `profil` (`id`, `user_id`, `fullname`, `handphone`, `province`, `province_id`, `city`, `city_id`, `district`, `district_id`, `address`, `created_at`, `updated_at`) VALUES
+(1, 4, '', '', '', 0, '', 0, '', 0, '', '2015-10-16 17:47:07', '2015-10-16 17:47:07');
 
 -- --------------------------------------------------------
 
@@ -521,7 +560,7 @@ CREATE TABLE IF NOT EXISTS `role_user` (
   `role_id` int(10) unsigned NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data untuk tabel `role_user`
@@ -535,7 +574,8 @@ INSERT INTO `role_user` (`id`, `user_id`, `role_id`, `created_at`, `updated_at`)
 (7, 3, 1, '2015-09-30 16:21:14', '2015-09-30 16:21:14'),
 (8, 3, 2, '2015-09-30 16:21:14', '2015-09-30 16:21:14'),
 (9, 3, 3, '2015-09-30 16:21:14', '2015-09-30 16:21:14'),
-(10, 3, 4, '2015-09-30 16:21:14', '2015-09-30 16:21:14');
+(10, 3, 4, '2015-09-30 16:21:14', '2015-09-30 16:21:14'),
+(11, 4, 4, '2015-10-16 17:47:07', '2015-10-16 17:47:07');
 
 -- --------------------------------------------------------
 
@@ -551,7 +591,16 @@ CREATE TABLE IF NOT EXISTS `sharing_discount` (
   `disc` double(16,2) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data untuk tabel `sharing_discount`
+--
+
+INSERT INTO `sharing_discount` (`id`, `user_id`, `product_id`, `provider`, `disc`, `created_at`, `updated_at`) VALUES
+(1, 3, 14, 'facebook', 320.00, '2015-10-15 20:15:28', '2015-10-15 20:15:28'),
+(2, 3, 10, 'facebook', 320.00, '2015-10-15 20:18:42', '2015-10-15 20:18:42'),
+(3, 3, 15, 'facebook', 320.00, '2015-10-15 20:20:15', '2015-10-15 20:20:15');
 
 -- --------------------------------------------------------
 
@@ -567,7 +616,14 @@ CREATE TABLE IF NOT EXISTS `social_login` (
   `provider_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data untuk tabel `social_login`
+--
+
+INSERT INTO `social_login` (`id`, `user_id`, `provider`, `social_token`, `provider_id`, `created_at`, `updated_at`) VALUES
+(1, 4, 'facebook', 'CAAJ0wVkDB6sBAE01Xf3RZAesRV9EqRxYpbmJ520xnl2xuZCaok0cWljOsIZBBY7urVle1CnM5AR6cucWqZAm5ElZCUJjI44Yd283ZAJsZAOL6oZB8yqZBcydsQUQzMXiHE9BPzGHAX6dJZA7pKcMF8GoFkos0nZBLNJTDAsZB8p4RBUxZCMDxMASWIWpe5JaH1dWFAV9WcGEqILQkPwZDZD', '10205324111166989', '2015-10-16 17:47:07', '2015-10-16 17:47:07');
 
 -- --------------------------------------------------------
 
@@ -595,8 +651,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `username`, `name`, `email`, `password`, `avatar`, `banned`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, '', 'John', 'j.doe@codingo.me', '$2y$10$8acOKq5lntMdDyMCHw.1fukclqnr6k2ZlSv23Y9fxTV6P.seaYN82', '', 0, NULL, '2015-09-18 06:31:21', '2015-09-18 06:31:21'),
 (2, '', 'Jane', 'jane.doe@codingo.me', '$2y$10$WlVudEFh6K7r3KyLI/dCZusMWWRC0Rp0Zo0stdy.KKv0fn5VWSv/W', '', 0, NULL, '2015-09-18 06:31:21', '2015-09-18 06:31:21'),
-(3, '', 'Angga kesuma', 'anggakesuma@gmail.com', '$2y$10$lyuq7TpP3KDov8.7U4C2be5U4VNmzpfaq7755X7WsT677/nae58ma', '', 0, NULL, '2015-09-29 04:34:43', '2015-09-29 04:34:43'),
-(4, '', 'Angga kesuma', 'anggakesuma@ymail.com', '$2y$10$TJCagtwSyeNT30u4A9hF7e2OXTaZ9eMV.h6vP2VlQq6R6Wr6aceVG', '', 0, NULL, '2015-09-29 04:37:36', '2015-09-29 04:37:36'),
+(3, '', 'Angga kesuma', 'anggakesuma@gmail.com', '$2y$10$lyuq7TpP3KDov8.7U4C2be5U4VNmzpfaq7755X7WsT677/nae58ma', '', 0, 'uCCDtj7vMKi9HUTwRWFmv6DQFwPdCgcvWtsuouEuK9EQXd8QFbGjkCq7kZeC', '2015-09-29 04:34:43', '2015-10-15 20:19:05'),
+(4, '', 'Angga ''tensai''', 'anggakesuma@ymail.com', '$2y$10$TJCagtwSyeNT30u4A9hF7e2OXTaZ9eMV.h6vP2VlQq6R6Wr6aceVG', 'https://graph.facebook.com/v2.4/10205324111166989/picture?type=normal', 0, NULL, '2015-09-29 04:37:36', '2015-10-16 17:47:07'),
 (5, '', 'Angga kesuma2', 'anggakesuma@asdasmail.com', '$2y$10$JnCwb3Xf20b3wnlgscXUYOYZ2Q3Fs49KCNV9ULy0qcrEzxDfIIICK', '', 0, 'zAtV8V8yXPn2ve8goxVaeEKGgLGr9leG4OGLcZAwawb6VOuvkNpQDBriPN1O', '2015-09-29 04:39:01', '2015-09-29 05:39:11');
 
 --
@@ -760,7 +816,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT for table `category_post`
 --
 ALTER TABLE `category_post`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `category_product`
 --
@@ -770,7 +826,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 -- AUTO_INCREMENT for table `colors`
 --
 ALTER TABLE `colors`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=40;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=43;
 --
 -- AUTO_INCREMENT for table `color_product`
 --
@@ -785,22 +841,22 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT for table `invoices`
 --
 ALTER TABLE `invoices`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `invoice_items`
 --
 ALTER TABLE `invoice_items`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `invoice_payment_by_transfer`
 --
 ALTER TABLE `invoice_payment_by_transfer`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `invoice_status`
 --
 ALTER TABLE `invoice_status`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `our_bank_account`
 --
@@ -815,12 +871,12 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `post_color`
 --
 ALTER TABLE `post_color`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=43;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=48;
 --
 -- AUTO_INCREMENT for table `post_image`
 --
@@ -840,7 +896,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 -- AUTO_INCREMENT for table `profil`
 --
 ALTER TABLE `profil`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `roles`
 --
@@ -850,17 +906,17 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 -- AUTO_INCREMENT for table `role_user`
 --
 ALTER TABLE `role_user`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `sharing_discount`
 --
 ALTER TABLE `sharing_discount`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `social_login`
 --
 ALTER TABLE `social_login`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `users`
 --
