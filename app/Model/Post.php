@@ -11,6 +11,7 @@ use App\Libraries\UploadableImageTrait;
 use App\Model\Color;
 use App\Model\Category;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 use DB;
 use Auth;
@@ -18,13 +19,16 @@ use Conner\Tagging\Taggable;
 
 class Post extends Model
 {
+
+    
+    use SoftDeletes, ColorsTrait, SaveManyCheckIfDuplicateTrait, Taggable, UploadableImageTrait; 
     
     //digunakan pada ColorsTrait
     public $imageFolder = "posts/";
 
-    use ColorsTrait, SaveManyCheckIfDuplicateTrait, Taggable, UploadableImageTrait; 
-
     protected $table = "posts";
+
+    protected $dates = ['deleted_at'];
 
     public function colors()
     {

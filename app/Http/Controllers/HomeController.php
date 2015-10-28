@@ -37,7 +37,7 @@ class HomeController extends Controller
         $post = array();
 
         if($grid == "terbaru"){
-            $post = Post::OrderBy("created_at","desc")->take(8)->get();
+            $post = Post::OrderBy("created_at","desc")->take(12)->get();
             $do="local";
 
         }elseif($grid == "instagram"){

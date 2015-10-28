@@ -63,7 +63,7 @@ Route::controller('settings', "Member\SettingController");
 Route::controller('sell', "Desainer\SellController");
 
 
-
+Route::get('delete/{model}/{id}', "Moderator\DeleteController@delete");
 
 /* ----------------------         BACKOFFICE                -----------------------*/
 

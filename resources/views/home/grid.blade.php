@@ -4,6 +4,11 @@
     @foreach($post as $p)
 
             <div class="col-xs-6 col-md-2" id='grid'>
+              
+@if(Auth::user()->hasRole('Moderator'))
+          <a href="{!! url('delete/post/'.$p->id)!!}" class='pull-right btn btn-link'> x </a>
+@endif   
+
                 <a href="{!! url('detail/'.$p->id.'-'.$str->slug($p->name)) !!}" class="thumbnail">
                   <img src="{!! $p->thumb !!}" alt="...">
                 </a>
@@ -31,6 +36,9 @@
 
     @foreach($post as $p)
         <div class="col-xs-6 col-md-2" id="grid">
+@if(Auth::user()->hasRole('Moderator'))
+          <a href="{!! url('delete/product/'.$p->id)!!}" class='pull-right btn btn-link'> x </a>
+@endif              
                 <a href="{!! url('butik/'.$p->id.'-'.$str->slug($p->name)) !!}" class="thumbnail">
                   <img src="{!! url($p->thumb) !!}" alt="...">
                   

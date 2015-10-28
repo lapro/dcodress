@@ -9,11 +9,12 @@ use App\Libraries\SaveManyCheckIfDuplicateTrait;
 use DB;
 use Conner\Tagging\Taggable;
 use App\Libraries\UploadableImageTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
     //
-    use ColorsTrait,SaveManyCheckIfDuplicateTrait, Taggable, UploadableImageTrait ;
+    use SoftDeletes, ColorsTrait,SaveManyCheckIfDuplicateTrait, Taggable, UploadableImageTrait ;
      
 
      protected $table = 'products';
@@ -32,6 +33,9 @@ class Product extends Model
      ];
 
      //use UploadImagesTrait;
+
+     
+    protected $dates = ['deleted_at'];
 
 
      public static function makeCode(){
