@@ -1,4 +1,4 @@
-@extends('adm.template')
+@extends('backoffice.template')
 
 @section('content')
 <div class='col-md-6'>

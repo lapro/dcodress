@@ -49,25 +49,21 @@ trait SocialLoginTrait
         
         $dataUser = User::where("email","=",$userSoc->email);
 
-        if(!empty($dataUser)){
-            $dataUser = User::create(['email'=> $userSoc->email]);
-            $dataUser->avatar = $userSoc->avatar;
-            $dataUser->name = $userSoc->name;
-            $dataUser->save();
+        if(empty($dataUser)){
 
+            $data['email'] = $userSoc->email;
+            $data['avatar'] = $userSoc->avatar;
+            $data['name'] = $userSoc->name;
+            
+            $dataUser = $this->create($data);
 
-            $userRole = Role::whereName('member')->first();
-            $dataUser->assignRole($userRole);
+        }   
 
             $dataSocial = SocialLogin::firstOrNew(['user_id' => $dataUser->id]);
             $dataSocial->provider = $provider;
             $dataSocial->provider_id = $userSoc->id;
             $dataSocial->social_token = $userSoc->token;
             $dataSocial->save();
-
-            $dataProfil = Profil::firstOrNew(['user_id'=>$dataUser->id]);
-            $dataProfil->save();
-        }   
 
         return $dataUser;
     }

@@ -1,8 +1,9 @@
 <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li><a href="{!! url('backoffice/users')!!}"> <i class="fa fa-user"></i> Users</a></li>
-            <li><a href="{!! url('backoffice/products')!!}"><i class="fa fa-list"></i> Products</a></li>
-
+            <li><a href="{!! url('backoffice/pengajuan')!!}"><i class="fa fa-list"></i> Products</a></li>
+             <li><a href="{!! url('backoffice/invoices')!!}"><i class="fa fa-list"></i> Invoices</a></li>
+<!--
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-edit"></i> <span>Invoices</span>
@@ -13,7 +14,7 @@
                 </a>
                 </li>
                  <li><a href="#">
-                	<a href="{!! url('backoffice/products')!!}">
+                	<a href="{!! url('backoffice/invoice')!!}">
                 <i class="fa fa-circle-o"></i> <span>Belum Membayar</span>
               </a></li>
                 <li><a href="#">
@@ -31,5 +32,5 @@
                 
               </ul>
             </li>
-              
+        -->      
 </ul>

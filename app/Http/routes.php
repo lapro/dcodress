@@ -15,6 +15,8 @@ Route::get('login', "Auth\AuthController@getLogin");
 
 Route::post('login', "Auth\AuthController@postLogin");
 
+Route::controller('c','StatisController');
+
 // SOCIAL LOGI [LOGIN dengan FACEBOOK atau GOOGLE Account]
 
 Route::get('login/{provider}','Auth\AuthController@getSocialLogin');
@@ -24,14 +26,19 @@ Route::get('login/{provider}','Auth\AuthController@getSocialLogin');
 Route::get('logout', "Auth\AuthController@getLogout");
 
 
+Route::group(["middleware"=>"auth"],function(){
 /* ----------------------         POSTING                -----------------------*/
-Route::get("submit", "Member\PostsController@getSubmit");
+//Route::get("submit", "Member\PostsController@getSubmit");
 
-Route::post("post/upload", "Member\PostsController@postUpload");
+//Route::post("post/upload", "Member\PostsController@postUpload");
 
-Route::get("post/{kode}", ["middleware"=>"auth","uses"=>"Member\PostsController@getIndex"]);
+Route::get("post", ["uses"=>"Member\PostsController@getIndex"]);
 
-Route::post("post/{kode}", "Member\PostsController@postIndex");
+Route::post("post", "Member\PostsController@postIndex");
+
+Route::get('detail/{slug}',"Member\PostsController@detail");
+
+Route::get('loving/{id}',"Member\PostsController@love");
 
 
 /* ----------------------         KATALOG                -----------------------*/
@@ -40,7 +47,22 @@ Route::get('katalog/', "Member\KatalogController@katalogAll");
 
 Route::get('katalog/{username}', "Member\KatalogController@getKatalogUser");
 
-Route::get('detail/{kode}',"Member\DetailController@getIndex");
+
+
+
+/* ----------------------         USER SETTING                -----------------------*/
+
+Route::controller('settings', "Member\SettingController");
+
+});//end member group function
+
+
+
+/* ----------------------         DESAINER                -----------------------*/
+
+Route::controller('sell', "Desainer\SellController");
+
+
 
 
 /* ----------------------         BACKOFFICE                -----------------------*/
@@ -52,13 +74,18 @@ Route::group(["prefix"=>"backoffice", "middleware"=>"auth"],function(){
 	Route::controller("users", "BackOffice\UsersController");
 
 	//products
-	Route::get('products/datatables',['uses'=>'Backoffice\ProductsController@datatables']);
+	Route::get('products/datatables',['uses'=>'BackOffice\ProductsController@datatables']);
 
-	Route::resource('products',"Backoffice\ProductsController");
+	Route::resource('products',"BackOffice\ProductsController");
 
 	//invoices
 
-	Route::controller('invoices',"Backoffice\InvoicesController");
+	Route::controller('invoices',"BackOffice\InvoicesController");
+
+	//pengajuan
+	Route::get('pengajuan/datatables',['uses'=>'BackOffice\PengajuanProductController@datatables']);
+
+	Route::resource('pengajuan',"BackOffice\PengajuanProductController");
 
 });
 
@@ -98,6 +125,10 @@ Route::get("cek-pesanan","StatusPesananController@index");
 
 
 Route::controller("ongkir","OngkirController");
+
+/* --------------------------- AJAx CALL ----------------------------------------*/
+
+Route::get("category","Backoffice\CategoryController@all");
 
 /*
 

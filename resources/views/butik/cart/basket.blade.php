@@ -17,10 +17,10 @@
     <td width='50%'>
       
       <div class='col-md-3'>
-      <img src="{!! url($value->options->detail->images[0]->url) !!}" style='width:100%'  />
+      <img src="{!! url($value->options->detail->thumb) !!}" style='width:100%'  />
       </div>
       <div class='col-md-8'>
-      <h3><a href='{!! url("butik/".$value->options->detail->slug) !!}'>{!! $value->name !!}</a></h3>
+      <h3><a href='{!! url("butik/".$value->options->detail->id) !!}'>{!! $value->name !!}</a></h3>
       Berat : {!! $value->options->detail->weight !!} gram
     </div>
     <div class='col-md-1'>
@@ -36,6 +36,10 @@
 </tbody>
 
         </table>
+<script type="text/javascript">
+$(".checkout-btn").show();
+
+</script>
   
 @else
   <br>

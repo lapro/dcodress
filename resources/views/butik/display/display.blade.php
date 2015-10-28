@@ -1,15 +1,15 @@
 @extends('template')
 
 @section('content')    
-    <div class="row" >
+    <div class="col-md-12" >
     	<div class="col-md-6">
   <!-- Wrapper for slides -->
   <div id="owl-display" class="owl-carousel" style='margin-top:20px'>
-    @foreach($product->images as $img)
+    
     <div class="item ">
-      {!! Html::image(url($img->url),'First Picture',['style'=>'']) !!}
+      {!! Html::image(url($product->image),'First Picture',['style'=>'']) !!}
     </div>
-    @endforeach
+
     
 </div>
 
@@ -20,42 +20,63 @@
     <div class="col-lg-6">
             
                 <div class="panel-body" style="min-height:300px;">
-                <span style='font-size:14pt;font-weight:bold;'>{{ $product->name }}</span><hr>
+<h1>{!! $product->name !!}</h1>
+<div style='font-size:10pt'>
+by : <strong>{!! $product->author->name !!}</strong> | <strong>{!! $product->created_at->toFormattedDateString() !!}</strong>
+</div>
+<br>
+@if(count($post->tags)>0)
+@foreach ($product->tags as $tag)
+  <span class='label label-primary' style='margin-right:5px'>{!! $tag->name !!} </span>
+@endforeach
+@endif
+<hr>
 <div style="overflow: hidden;float:left">
+  <?php /*
     @foreach($product->colors as $color)
 <div style="width: 20px; float: left; height: 20px; background-color: <?php echo $color->name ?>"></div>
     @endforeach
-</div>
-<div class='pull-right' style='font-weight:bold'>
-<i class='fa fa-list'></i>
-{!! $product->categories[0]->name !!}
+  */
+    ?>
 </div>
 <div class='clearfix'></div>
 <br>
                 <h5 style="">
-                  {!! $product->description !!}
+                  {!! nl2br($product->description) !!}
                 </h5>
                 
-                </div>
+
+                </div> <!-- end panel -->
                 <div <?php /*style='background:url({{asset("img/freeongkir.jpg")}}) no-repeat; padding-top:20px; */ ?>>
                 
-                
+
                   <br>
               <div style='text-align:center'>
-              <span style="color:black;font-size:12pt"><strike>{{ toRupiah($product->original_price) }}</strike></span> <br>
+               @if($product->initial_price != $product->price)
+              <span style="color:black;font-size:12pt"><strike>{{ toRupiah($product->initial_price) }}</strike></span> <br>
               <span style="color:red;font-size:18pt" id='harga'>{{ toRupiah($product->price) }}</span>
+              @else
+                 <span style="color:red;font-size:18pt" id='harga'>{{ toRupiah($product->price) }}</span>
+              @endif
               </div>
                 </div>
-
-                <div style='border-top:1px #c0c0c0; text-align:center'>     <span title="The tooltip" data-toggle="tooltip" data-placement="top"><a href='{{url('butik/share/'.$product->slug)}}' class="btn btn-default"  data-toggle="modal" data-target="#remote-modal-sm" style="margin:5px;" id='share_button'  > <i class='fa fa-hand-paper-o'></i><br> Get Your Price </a></span>
+<br><br>
+                <div style='border-top:1px #c0c0c0; text-align:center'>     <span title="The tooltip" data-toggle="tooltip" data-placement="top"><a href='{{url('butik/share/'.$slug)}}' class="btn btn-default"  data-toggle="modal" data-target="#remote-modal-sm" style="margin:5px;" id='share_button'  > <i class='fa fa-hand-paper-o'></i><br> Get Your Price </a></span>
 
                       
-                      <a href="#" class="btn btn-danger " style="margin:5px 5px 5px 0px" data-toggle="modal" data-target="#modal-cart" data-tipe='add' data-slug='{!! $product->slug !!}'>
+                      <a href="#" class="btn btn-primary " style="margin:5px 5px 5px 0px" data-toggle="modal" data-target="#modal-cart" data-tipe='add' data-slug='{!! $slug !!}'>
                         <i class='fa fa-shopping-cart'></i><br>
                        Pick Your Dress</a>
                       <div class="clearfix">
-                      
-                <div>        
+                      <br><br>
+                <div> 
+
+                <small> 
+                  @if($product->hasCaraPromo('sharing discount'))
+                <span>* Share outfit ini, dan harga akan semakin murah </span>   
+                  @endif
+                </small>  
+
                       </div>
             </div>
         </div>
@@ -63,9 +84,10 @@
 </div>
 
 </div>
+<div class='clearfix'></div>
 <br><br><br>
 <center>
-<a href='{!! url("butik/random?p=".$product->slug)!!}' class='btn btn-primary shadow'><i class='fa fa-random'></i> Random Outfit ~</a>
+<a href='{!! url("butik/random?p=".$product->id)!!}' class='btn btn-primary shadow'><i class='fa fa-random'></i> Random Outfit ~</a>
 </center>
 
 <div id='myModal' class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
@@ -150,7 +172,7 @@
 
 
 // firebase --------------- realtime harga
-var ref = new Firebase("https://glaring-fire-934.firebaseio.com/products/{!! $product->slug !!}");
+var ref = new Firebase("https://glaring-fire-934.firebaseio.com/products/{!! $slug !!}");
 // Get the data on a post that has changed
 ref.on("value", function(snapshot) {
   var changedPost = snapshot.val();

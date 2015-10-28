@@ -19,7 +19,7 @@ class CartController extends Controller
 
     	$row = $product->getDataBySlug($slug);
 
-    	if($row->count() > 0 and $row->stok > 0){
+    	if($row->count() > 0){
 
     		Cart::add($row->id, $row->name, 1, $row->price,array('detail'=>$row));
     	    return "true";

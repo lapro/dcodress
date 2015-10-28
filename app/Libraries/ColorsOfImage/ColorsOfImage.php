@@ -1,5 +1,5 @@
 <?php
-namespace Libraries\ColorsOfImage;
+namespace App\Libraries\ColorsOfImage;
 /**
  * Gets the prominent colors in a given image. To get common color matching, all pixels are matched
  * against a whitelist color palette.

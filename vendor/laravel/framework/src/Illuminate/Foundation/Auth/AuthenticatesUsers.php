@@ -5,6 +5,7 @@ namespace Illuminate\Foundation\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
+use Session;
 
 trait AuthenticatesUsers
 {
@@ -31,7 +32,10 @@ trait AuthenticatesUsers
      * @return \Illuminate\Http\Response
      */
     public function postLogin(Request $request)
-    {
+    {   
+        //bersihkan session jika ada session untuk redirect after login
+        Session::forget('redirectAfterLogin');
+
         $this->validate($request, [
             $this->loginUsername() => 'required', 'password' => 'required',
         ]);

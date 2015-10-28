@@ -3,10 +3,18 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use Intervention\Image\ImageManager;
-use Libraries\ColorsOfImage\ColorsTrait;
-use Libraries\SaveManyCheckIfDuplicateTrait;
+use App\Libraries\ColorsOfImage\ColorsTrait;
+use App\Libraries\SaveManyCheckIfDuplicateTrait;
+
+use App\Libraries\UploadableImageTrait;
+
 use App\Model\Color;
+use App\Model\Category;
+use Illuminate\Support\Str;
+
+use DB;
+use Auth;
+use Conner\Tagging\Taggable;
 
 class Post extends Model
 {
@@ -14,7 +22,7 @@ class Post extends Model
     //digunakan pada ColorsTrait
     public $imageFolder = "posts/";
 
-    use ColorsTrait,SaveManyCheckIfDuplicateTrait; 
+    use ColorsTrait, SaveManyCheckIfDuplicateTrait, Taggable, UploadableImageTrait; 
 
     protected $table = "posts";
 
@@ -23,23 +31,12 @@ class Post extends Model
         return $this->belongsToMany('App\Model\Color',"post_color");
     }
 
-     public function categories()
-    {
-        return $this->belongsToMany('App\Model\category',"category_post");
+    public function author(){
+
+        return $this->belongsTo('App\Model\User','user_id');
     }
 
-    public function makeKode(){
-    	return md5(uniqid());
-    }
 
-    public function uploadImage($photo, $filename)
-    {	
-    	$folder = "posts/";
-        $manager = new ImageManager();
-        $image = $manager->make($photo )->encode('jpg')->save($folder.$filename);
- 
-        return $image;
-    }
 
     public function saveColors(){
 
@@ -49,4 +46,31 @@ class Post extends Model
         //print_r($id);
         return $this;
     }
+
+    public function lovable($insert = false){
+        if(Auth::check()){
+        $post_id = $this->id;
+
+        $c = DB::table("post_loves")
+                ->where('user_id','=',Auth::user()->id)
+                ->where('post_id','=',$post_id)
+                ->count();
+
+        if($c == 0){
+            
+            if($insert == true){
+                
+                DB::table("post_loves")->insert(['user_id'=>Auth::user()->id, "post_id"=>$post_id]);
+                $this->loves += 1;
+                $this->save();
+            }
+            
+            return true;
+        }
+        }
+
+        return false;
+    }
+
+
 }

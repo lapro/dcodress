@@ -17,11 +17,7 @@
     filter: alpha(opacity=0);
 }
  </style>
-    <script type="text/javascript">
-        $(".upload").change(function(){
-            $("#form-share").submit();
-        });
-    </script>
+
 
 <div class='row'>
 <div class='col-md-3'>
@@ -36,7 +32,9 @@
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist" style="">
     <li role="presentation" class="active"><a href="#upload" aria-controls="upload" role="tab" data-toggle="tab"><i class='fa fa-upload'></i> Upload</a></li>
+    <?php /*
     <li role="presentation" class='hidden-lg hidden-md'><a href="#take" aria-controls="take" role="tab" data-toggle="tab"><i class='fa fa-camera'></i> Take a Pic</a></li>
+    */ ?>
       <li role="presentation"><a href="#create" aria-controls="take" role="tab" data-toggle="tab"><i class='fa fa-magic'></i> Create</a></li>
   </ul>
 
@@ -46,26 +44,16 @@
 <h3 style='font-weight:bold;text-decoration:underline;'>Share <span style='color:red;'>#OOTD</span> kamu hari ini</h3>
 <small>Jadikan outfit kalian inspirasi bagi orang lain</small>
             
- 
-                {!! Form::open(['url' => ('post/upload'), 'class' => 'dropzone', 'files'=>true, 'id'=>'form-share']) !!}
- 
-                <div class="dz-message">
- 
-                </div>
+<br> <br> <a href="{!! url('post') !!}" class='btn btn-primary'>Submit</a>
 
-               <div class="fileUpload btn btn-primary">
-                    <span>Upload Outfit</span>
-                    <input name="file" type="file" class="upload" />
-                </div>
-
-                {!! Form::close() !!}
 
     </div>
     
 <!-- ################## take #######################-->
+<?php /*
     <div role="tabpanel" class="tab-pane" id="take">
         
-        {!! Form::open(['url' => ('post/upload'), 'class' => 'dropzone', 'files'=>true, 'id'=>'form-share']) !!}
+        {!! Form::open(['url' => ('post/upload'), 'class' => 'dropzone', 'files'=>true, 'id'=>'form-share-take']) !!}
  
                 <div class="dz-message">
  
@@ -74,11 +62,13 @@
                <div class="fileUpload btn btn-primary">
                     <span>Take a pic</span>
                     
-         <input type="file" accept="image/*" capture="camera" />
+         <input type="file" name='file' accept="image/*" capture="camera" class=' autosubmit-take'/>
                 </div>
 
                 {!! Form::close() !!}
     </div>
+*/ ?>
+
     <div role="tabpanel" class="tab-pane" id="create">
         <br><br>
         cooming soon ..
@@ -99,3 +89,17 @@
 </div>
 <div class='clearfix'></div>
 <br>
+
+    <script type="text/javascript">
+        $(".autosubmit-upload").change(function(){
+            console.log("asas");
+            $("#form-share-upload").submit();
+            $(".mainloading").show();
+        });
+
+        $(".autosubmit-take").change(function(){
+            
+            $("#form-share-take").submit();
+            $(".mainloading").show();
+        });
+    </script>

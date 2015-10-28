@@ -1,9 +1,15 @@
 @extends('template')
 
 @section('content')
+
 @if(Auth::check())
-@include("member.submit")
+
+@if(count(Auth::user()->profil)==0)
+<div class='alert alert-danger'>
+    Satu langkah lagi untuk melengkapi informasi anda <a href="{!! url('settings') !!}">disni </a>.  
+</div>
 @endif
+
 <div class='col-md-12'>
     <h5 style='color:#c0c0c0 ;font-family: "AvantGarde", Arial, Sans-serif;'>OUTFIT <span style='color:#000'>TERBARU :</span> </h5>
     <div class='clearfix'></div>
@@ -30,6 +36,9 @@
 </div>
 <div class='clearfix'></div>
 <br>
+
+<?php /*
+ambil data dari Instagram berdasarkan hastag
 <div class='col-md-12'>
     <h5 style='color:black ;font-family: "AvantGarde", Arial, Sans-serif;'>Instagram :</h5>
     <div class='clearfix'></div>
@@ -39,6 +48,8 @@
     <br>
     <div class='clearfix'></div>
 </div>
+*/ ?>
+
 <div class='clearfix'></div>
 @stop
 
@@ -57,6 +68,8 @@
               $("#new-item").html(data);
         });
     }
+    
+    /*
     function getInstagram(){
     var token = "<?php echo csrf_token(); ?>";
         $.ajax({
@@ -69,6 +82,7 @@
               $("#instagram").html(data);
         });
     }
+    */
 
     function getButik(){
     var token = "<?php echo csrf_token(); ?>";
@@ -85,8 +99,26 @@
 
 
       getTerbaru();
-      getInstagram();
+      //getInstagram();
       getButik();
 
 </script>
+@else <!-- end login cek-->
+
+<div class='col-md-12'>
+  <br>
+
+<div class='col-md-8 hidden-xs'>
+<center>
+<br><br><br><h1 style="">Bagikan dan Cari <br>Inspirasi Outfit Kamu <br> Disini </h1>
+</center>
+</div>
+<div class='col-md-4'>
+@include('auth.register_form')
+</div>
+  <br><Br>
+</div>
+
+@endif <!-- end login cek-->
+
 @stop

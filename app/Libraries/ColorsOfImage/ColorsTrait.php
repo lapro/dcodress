@@ -1,7 +1,7 @@
-<?php namespace Libraries\ColorsOfImage;
+<?php namespace App\Libraries\ColorsOfImage;
 
 
-use Libraries\ColorsOfImage\ColorsOfImage;
+use App\Libraries\ColorsOfImage\ColorsOfImage;
 
 trait ColorsTrait{
 

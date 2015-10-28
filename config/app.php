@@ -151,6 +151,7 @@ return [
         Illuminate\Html\HtmlServiceProvider::class,
         yajra\Datatables\DatatablesServiceProvider::class,
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
+        Conner\Tagging\Providers\TaggingServiceProvider::class,
     ],
 
     /*

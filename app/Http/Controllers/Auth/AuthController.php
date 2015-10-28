@@ -42,9 +42,12 @@ class AuthController extends Controller
     public function __construct()
     {   
         if(Session::has("redirectAfterLogin")){
+            
             $this->redirectTo = Session::get("redirectAfterLogin");
-            Session::forget('redirectAfterLogin');
+
+            //Session::forget('redirectAfterLogin');
         }
+        
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
@@ -79,7 +82,8 @@ class AuthController extends Controller
             $user = User::create([
                 'name' => ucfirst($data['name']),
                 'email' => $data['email'],
-                'password' => bcrypt($data['password']),
+                'password' => (!empty($data['password'])) ? bcrypt($data['password']) : "",
+                'avatar'=>( !empty($data['avatar'])) ? $data['avatar'] : "", 
             ]);
             $user->assignRole(4);
 
@@ -102,6 +106,6 @@ class AuthController extends Controller
 
         return view("auth.login");
     }
-
+   
     
 }

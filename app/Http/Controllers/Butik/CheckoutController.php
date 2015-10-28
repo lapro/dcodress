@@ -43,12 +43,14 @@ class CheckoutController extends Controller
     public function getSimpan(){
 
     	$invoice_kode = Invoice::createInvoice(Session::get('invoice'),Session::get('ongkir'));
-        echo Session::get('ongkir')."<br>";
+        
+        //echo Session::get('ongkir')."<br>";
+
     	if($invoice_kode != false){
 			Session::forget('invoice');
 			Cart::destroy();
 			Session::forget('ongkir');
-			//return redirect(url('butik/payment/'.$invoice_kode));
+			return redirect(url('butik/payment/'.$invoice_kode));
 		}
     }
 

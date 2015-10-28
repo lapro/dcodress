@@ -107,7 +107,7 @@
 		</tr>
 		@endforeach	
 		<tr style='background:#f4f4f4'>
-			<td>Total</td><td>{!! toRupiah($invoice->total- $invoice->ongkir) !!}</td>
+			<td>Total</td><td>{!! toRupiah($invoice->getOriginal('total') - $invoice->ongkir) !!}</td>
 		</tr>
 		<tr style='background:#f4f4f4'>
 			<td>Ongkos kirim</td><td>{!! toRupiah($invoice->ongkir) !!}</td>

@@ -3,8 +3,12 @@
 @section('content')
 
 <div class='col-md-12'>
+
+   <a href="{!! url('sell') !!}" class='btn btn-primary pull-right btn-sm'><i class='fa fa-money'></i> Jual Outfit</a>
     <h5 style='color:black ;font-family: "AvantGarde", Arial, Sans-serif;'>Butik :</h5>
+   
     <div class='clearfix'></div>
+    <br>
     <div class='row' id='butik'>
         
     </div>

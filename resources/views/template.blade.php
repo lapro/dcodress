@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html >
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
 	<title> Share, get an exclusive fashion for you | dcodress</title>
 
 	{!!Html::style('assets/bootstrap/css/bootstrap.css')!!}
@@ -12,6 +14,10 @@
   {!!Html::style('assets/loading.css')!!}
   {!!Html::style('assets/stepbystep.css')!!}
 
+  <!-- Selectize-->
+  
+  {!!Html::style('assets/selectize/css/selectize.css')!!}
+  {!!Html::style('assets/selectize/css/selectize.default.css')!!}
 
 
 <!-- Important Owl stylesheet -->
@@ -37,6 +43,9 @@ type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
 
 </head>
 <body>
+
+<div class="loading mainloading" style='display:none'>Loading&#8230;</div>
+
 <script>
   window.fbAsyncInit = function() {
     FB.init({
@@ -60,8 +69,20 @@ type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
 <div style=' padding-bottom:4px' class='row '>
 <div class='col-xs-4'>
 <ul class="nav nav-pills  " >
-   <li class="dropdown" id="menuLogin">
-            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin"><i class='fa fa-check'></i><span class='hidden-xs'>  Status Pesanan</span></a>
+
+</ul>
+</div>
+<div class='col-xs-12 '>
+<ul class="nav nav-pills pull-right" >
+
+
+  <li role="presentation"><a href="#" data-toggle='modal' data-target='#modal-cart'><i class='fa fa-shopping-cart'></i> <span class="badge" id='jumlah-cart'>{!! Cart::count() !!}</span></a></li>
+
+@if(!Auth::check()) 
+   
+
+  <li class="dropdown" id="menuLogin">
+            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin"><i class='fa fa-check'></i> <span class='hidden-xs hidden-md'>Cek Status Pesanan</span></a>
             <div class="dropdown-menu" style="padding:17px;width:300px">
               <form class="form" id="formLogin" action="{!! url('cek-pesanan') !!}" method="GET"> 
                 <div class="form-group">
@@ -78,24 +99,32 @@ type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
               </form>
             </div>
   </li>
-  <li role="presentation" class=""><a href="#"> <i class='fa fa-bullhorn'></i><span class='hidden-xs'>  Pengumuman</span></a></li>
-</ul>
-</div>
-<div class='col-xs-8 '>
-<ul class="nav nav-pills pull-right" >
-  
-  <li role="presentation"><a href="#" data-toggle='modal' data-target='#modal-cart'><i class='fa fa-shopping-cart'></i> <span class="badge" id='jumlah-cart'>{!! Cart::count() !!}</span></a></li>
+  @endif
 
   @if(Auth::check())
-  
-  <li role="presentation" class=""><a href="#"><i class='fa fa-money'></i> <span class='hidden-xs'>Transaksi</span></a></li>
-  <li role="presentation" class=""><a href="#"><i class='fa fa-list'></i> <span class='hidden-xs'>Katalog</span></a></li>
+   <li role="presentation"><a href="{!! url('post') !!}" ><i class='fa fa-pencil'></i> Submit</a></li>
+  <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class='fa fa-user'></i> {!! Auth::user()->name !!} <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+ <li role="presentation" class=""><a href="#"><i class='fa fa-money'></i> <span class=''>Transaksi</span></a></li>
+  <li role="presentation" class=""><a href="#"><i class='fa fa-list'></i> <span class=''>Katalog</span></a></li>
          
-  <li role="presentation"><a href="{{ url('settings') }}" ><i class='fa fa-gear'></i> <span class='hidden-xs'>Settings</span> </a></li>
-  <li role="presentation"><a href="{{ url('logout') }}" ><i class='fa fa-sign-out'></i> <span class='hidden-xs'>Logout</span> </a></li>
-
+  <li role="presentation"><a href="{{ url('settings') }}" ><i class='fa fa-gear'></i> <span class=''>Setting</span> </a></li>
+   
+  <li role="presentation"><a href="{{ url('logout') }}" ><i class='fa fa-sign-out'></i> <span class='hidden-xs hidden-md'>Logout</span> </a></li>  
+         </ul>
+        </li>
+   
   @else
-  <li role="presentation"><a href="{{ url('login') }}" data-toggle="modal" data-target="#remote-modal-sm"><i class='fa fa-sign-in'></i> Login</a></li>
+
+  <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class='fa fa-user'></i>  Login<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+ <li role="presentation"><a href="{{ url('login') }}" data-toggle="modal" data-target="#remote-modal-login "><i class='fa fa-sign-in'></i> Login</a></li>
+    <li role="presentation"><a href="{{ url('register') }}" ><i class='fa fa-user'></i> Daftar</a></li>
+         </ul>
+        </li>
+  
   @endif
 </ul>
 </div>
@@ -103,7 +132,7 @@ type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
 
 
   <nav class="navbar navbar-inverse shadow-arch-edges" style="height:60px;background-color:oldlace; border:none">
-        <div class="navbar-header hidden-xs">
+        <div class="navbar-header hidden-xs hidden-md">
           <!--
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
@@ -112,14 +141,14 @@ type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
             <span class="icon-bar"></span>
           </button>
           -->
-          <a class="navbar-brand" style="color:black;" href="#"><img src="{{asset('img/logo.png')}}"></a>
+          <a class="navbar-brand" style="color:black;" href="{!! url() !!}"><img src="{{asset('img/logo.png')}}"></a>
           
         </div>  
          <!-- Collect the nav links, forms, and other content for toggling -->
     <!--
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style='padding-top:5px;padding-right:30px;z-index:9999;background:#fff;'>
       -->
-      <div class='hidden-xs' style='padding-top:5px;padding-right:30px;'>
+      <div class='hidden-xs hidden-md' style='padding-top:5px;padding-right:30px;'>
       <ul class="nav navbar-nav navbar-right" style='style="height:60px;'>
         <li class='' style='font-weight: bold; '><a href="{!! url("butik") !!}" ><span style='color:red;text-decoration:underline;'> BELANJA </span>  DI BUTIK</a></li>
         <li class='' style='font-weight: bold;'><a href="{!! url("/") !!}" class=''>HOME </a></li>
@@ -128,11 +157,11 @@ type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
 
 
 <!-- nav mobile-->
-    <ul class="nav nav-pills hidden-md hidden-lg mobile-nav" style='padding:10px'> <li role="presentation" style="margin-right: 100px">
+    <ul class="nav nav-pills hidden-lg mobile-nav" style='padding:10px'> <li role="presentation" style="">
         <a class="navbar-brand" style="color:black;margin-top:-10px;margin-left:-10px" href="#"><img src="{{asset('img/logo.png')}}" ></a>
       </li>
 
-      <li class='' style='font-weight: bold; '><a href="{!! url("butik") !!}" ><span style='color:red;text-decoration:underline;'> BELANJA </span>  DI BUTIK</a></li>
+      <li class='' style='font-weight: bold; '><a href="{!! url("butik") !!}" ><span style='color:red;text-decoration:underline;'> BELANJA </span> </a></li>
         <li class='' style='font-weight: bold;'><a href="{!! url("/") !!}" class=''><i class="fa fa-home"></i> </a></li>
     </ul>
       <!--
@@ -153,9 +182,7 @@ type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
 <div class='col-md-2 col-xs-6 footer-grid' >
   <ul class='nav nav-pills nav-stacked footer-link' style='margin:10px'>
     <li><a href="#"> Home</a></li>
-    <li><a href="#"> Event </a></li>
-    <li><a href="#"> Kontes</a></li>
-    <li><a href="#"> Tutorial</a></li>
+    <li><a href="{!! url('c/rules')!!}"> Rules </a></li>
     <li><a href="#"> Belanja Di Butik</a></li>
   </ul>
 </div>
@@ -208,10 +235,19 @@ Copyright @ 2015 dcodress.com
               </div><!-- /.modal-dialog -->
             </div>
 
+<div class="modal fade" id="remote-modal-login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+              <div class="modal-dialog modal-md" >
+                <div class="modal-content" style='border-top:3px solid red'>
+                  loading...
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div>
+
             <!-- modal CART -->
 
 {!!Html::script('assets/bootstrap/js/bootstrap.min.js')!!}
 {!!Html::script('assets/jquery-cookies/js.cookie.js')!!}
+{!!Html::script('assets/selectize/js/standalone/selectize.min.js')!!}
 <!-- Include js plugin -->
 <script src="{!! asset('assets/owl-carousel/owl.carousel.js') !!}"></script>
 
@@ -225,6 +261,8 @@ Copyright @ 2015 dcodress.com
   {
     $('#remote-modal-sm .modal-content').html("<div class='modal-body'>"+"loading"+"</div>");
     $('#remote-modal-sm').removeData('bs.modal');
+    $('#remote-modal-login .modal-content').html("<div class='modal-body'>"+"loading"+"</div>");
+    $('#remote-modal-login').removeData('bs.modal');
   });
 
 

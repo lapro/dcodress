@@ -4,15 +4,16 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use App\Libraries\UploadImagesTrait;
-use Libraries\ColorsOfImage\ColorsTrait;
-use Libraries\SaveManyCheckIfDuplicateTrait;
+use App\Libraries\ColorsOfImage\ColorsTrait;
+use App\Libraries\SaveManyCheckIfDuplicateTrait;
 use DB;
+use Conner\Tagging\Taggable;
+use App\Libraries\UploadableImageTrait;
 
 class Product extends Model
 {
     //
-    use ColorsTrait,SaveManyCheckIfDuplicateTrait; 
+    use ColorsTrait,SaveManyCheckIfDuplicateTrait, Taggable, UploadableImageTrait ;
      
 
      protected $table = 'products';
@@ -32,9 +33,6 @@ class Product extends Model
 
      //use UploadImagesTrait;
 
-     public function images(){
-        return $this->hasMany("App\Model\ProductImage");
-     }
 
      public static function makeCode(){
 
@@ -53,8 +51,9 @@ class Product extends Model
      }
 
      public function getDataBySlug($slug){
-
-     	return $this->where('slug','=',$slug)->first();
+        $id = explode("-", $slug)[0];
+        $product = Product::find($id);
+     	return $product;
      }
 
      public function discPrice($disc){
@@ -64,51 +63,30 @@ class Product extends Model
 
      }
 
+     public function caraPromo(){
 
-     public function saveImages($images){
-          
-          $id = $this->id;
-          $destinationPath = 'products';
-          $product_image=array();
-
-          // Making counting of uploaded images
-         $file_count = count($images);
-         // start count how many uploaded
-         $uploadcount = 0;
-         foreach($images as $file) {
-             $filename = $this->kode.($uploadcount+1).".jpg";
-             $upload_success = $file->move($destinationPath, $filename);
-             
-             $product_image[$uploadcount]["url"] = $destinationPath."/".$filename;
-             $product_image[$uploadcount]["order"] = $uploadcount+1;
-             $product_image[$uploadcount]["product_id"] = $id;
-             $uploadcount ++;
-         }
-
-         if($uploadcount == $file_count){
-               return DB::table("product_image")->insert($product_image);               
-         }
-
-         return false;
-     
+        return $this->belongsToMany('App\Model\CaraPromo','product_cara_promo');
      }
 
-     public function categories()
-    {
-        return $this->belongsToMany('App\Model\category',"category_product");
+     public function statusPengajuan(){
+
+        return $this->belongsTo("App\Model\status_pengajuan");
+     }
+
+    public function author(){
+
+        return $this->belongsTo('App\Model\User','user_id');
     }
 
-    public function colors()
-    {
-        return $this->belongsToMany('App\Model\Color',"color_product");
+    public function hasCaraPromo($name){
+
+        foreach($this->caraPromo as $cp)
+        {
+            if($cp->name == $name) return true;
+        }
+ 
+        return false;
     }
 
-
-    public function saveColors(){
-        $url = $this->images[0]->url;
-        $id = $this->getId($this->getColors($url), new Color);
-        $this->colors()->sync($id);
-        //print_r($id);
-        return $this;
-    }
 }
+ 

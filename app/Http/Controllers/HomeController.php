@@ -12,6 +12,8 @@ use App\Model\Product;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Handler\CurlHandler;
+use Illuminate\Support\Str;
+
 
 class HomeController extends Controller
 {
@@ -30,7 +32,8 @@ class HomeController extends Controller
     	}
     }
 
-    public function grid($grid){
+    public function grid($grid, Str $str){
+
         $post = array();
 
         if($grid == "terbaru"){
@@ -49,12 +52,12 @@ class HomeController extends Controller
 
         }elseif($grid == "butik"){
 
-            $post = Product::OrderBy("created_at","desc")->take(8)->get();
+            $post = Product::OrderBy("created_at","desc")->where('status_pengajuan',"=",2)->take(8)->get();
             $do="butik";
 
         }
 
-        return view("home.grid")->with("post",$post)->with("do",$do);
+        return view("home.grid")->with("post",$post)->with("do",$do)->with('str',$str);
     }
 
     protected function getHttpClient()

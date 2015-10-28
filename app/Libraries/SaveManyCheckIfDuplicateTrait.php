@@ -1,4 +1,4 @@
-<?php namespace Libraries;
+<?php namespace App\Libraries;
 
 
 use DB;
